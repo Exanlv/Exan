@@ -1,0 +1,1 @@
+export const DEVIDS: string[] = ['178136842405675008'];

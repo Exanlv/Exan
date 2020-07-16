@@ -1,0 +1,7 @@
+export const LIMTIS = {
+	CATEGORY: {
+		NAME_LENGTH: 200,
+		AMOUNT_TOTAL: 20,
+		AMOUNT_ROLES: 20
+	}
+}

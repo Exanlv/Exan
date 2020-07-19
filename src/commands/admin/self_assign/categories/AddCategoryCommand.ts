@@ -1,27 +1,43 @@
 import { BaseCommand } from "../../../_BaseCommand";
-import { LIMTIS } from "../../../../conf/limits";
+import { LIMTIS } from "../../../../../conf/limits";
 
 export class AddCategoryCommand extends BaseCommand {
 	public async handle(): Promise<void> {
 		if (this.server_config.roles.categories.length === LIMTIS.CATEGORY.AMOUNT_TOTAL) {
-			await this.reply(`You can only have ${LIMTIS.CATEGORY.AMOUNT_TOTAL} channels`);
+			await this.reply(
+				this.trans(
+					'commands.add_category.enter_name',
+					{
+						limit: String(LIMTIS.CATEGORY.AMOUNT_TOTAL)
+					}
+				)
+			);
+			
 			return;
 		}
 
-		const category_name = await this.get_reply('> Enter a name for the category');
+		const category_name = await this.get_reply(this.trans('commands.add_category.enter_name'));
 
 		if (!category_name) {
-			await this.reply('No category name was entered');
+			await this.reply(this.trans('commands.add_category.no_name'));
 			return;
 		}
 
 		if (category_name.length > LIMTIS.CATEGORY.NAME_LENGTH) {
-			await this.reply(`Category name can not be over ${LIMTIS.CATEGORY.NAME_LENGTH} characters`);
+			await this.reply(
+				this.trans(
+					'commands.add_category.category_already_exists',
+					{
+						limit: String(LIMTIS.CATEGORY.NAME_LENGTH)
+					}
+				)
+			);
+
 			return;
 		}
 
 		if (this.server_config.roles.categories.find(c => c.name.toLowerCase() === category_name.toLowerCase())) {
-			await this.reply('Category already exists');
+			await this.reply(this.trans('commands.add_category.category_already_exists'));
 			return;
 		}
 

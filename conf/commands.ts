@@ -1,19 +1,22 @@
-import { Command } from "../classes/Command";
-import { HelpCommand } from "../commands/HelpCommand";
-import { PrefixCommand } from "../commands/PrefixCommand";
-import { SetPrefixCommand } from "../commands/admin/SetPrefixCommand";
-import { ToggleDevModeCommand } from "../commands/dev/ToggleDevModeCommand";
-import { ListDevModeCommand } from "../commands/dev/ListDevModeCommand";
-import { UnknownCommand } from "../commands/UnknownCommand";
-import { AddSelfAssignableRole } from "../commands/admin/self_assign/roles/AddSelfAssignableRole";
-import { RemoveSelfAssignableRole } from "../commands/admin/self_assign/roles/RemoveSelfAssignableRole";
-import { GetRoleCommand } from "../commands/GetRoleCommand";
-import { RemoveRoleCommand } from "../commands/RemoveRoleCommand";
-import { ListRolesCommand } from "../commands/ListRolesCommand";
-import { AddCategoryCommand } from "../commands/admin/self_assign/categories/AddCategoryCommand";
-import { AddRoleToCategoryCommand } from "../commands/admin/self_assign/categories/AddRoleToCategoryCommand";
-import { RemoveRoleFromCategoryCommand } from "../commands/admin/self_assign/categories/RemoveRoleFromCategoryCommand";
-import { ListCategoriesCommand } from "../commands/admin/self_assign/categories/ListCategoriesCommand";
+import { Command } from "../src/classes/Command";
+import { HelpCommand } from "../src/commands/HelpCommand";
+import { PrefixCommand } from "../src/commands/PrefixCommand";
+import { SetPrefixCommand } from "../src/commands/admin/SetPrefixCommand";
+import { ToggleDevModeCommand } from "../src/commands/dev/ToggleDevModeCommand";
+import { ListDevModeCommand } from "../src/commands/dev/ListDevModeCommand";
+import { UnknownCommand } from "../src/commands/UnknownCommand";
+import { AddSelfAssignableRole } from "../src/commands/admin/self_assign/roles/AddSelfAssignableRole";
+import { RemoveSelfAssignableRole } from "../src/commands/admin/self_assign/roles/RemoveSelfAssignableRole";
+import { GetRoleCommand } from "../src/commands/GetRoleCommand";
+import { RemoveRoleCommand } from "../src/commands/RemoveRoleCommand";
+import { ListRolesCommand } from "../src/commands/ListRolesCommand";
+import { AddCategoryCommand } from "../src/commands/admin/self_assign/categories/AddCategoryCommand";
+import { AddRoleToCategoryCommand } from "../src/commands/admin/self_assign/categories/AddRoleToCategoryCommand";
+import { RemoveRoleFromCategoryCommand } from "../src/commands/admin/self_assign/categories/RemoveRoleFromCategoryCommand";
+import { ListCategoriesCommand } from "../src/commands/admin/self_assign/categories/ListCategoriesCommand";
+import { SetGuildLanguageCommand } from "../src/commands/admin/SetGuildLanguageCommand";
+import { ListLanguageCommand } from "../src/commands/ListLanguageCommand";
+import { SetLanguageCommand } from "../src/commands/SetLanguageCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -115,5 +118,29 @@ export const COMMANDS: Command[] = [
 		trigger: 'roles',
 		class: ListRolesCommand,
 		description: 'List available roles',
+	},
+	{
+		trigger: 'language',
+		class: ListLanguageCommand,
+		description: 'List available languages',
+		sub_commands: [
+			{
+				trigger: 'set',
+				class: SetLanguageCommand,
+				description: 'Set prefered language',
+			},
+			{
+				trigger: 'guild',
+				class: ListLanguageCommand,
+				description: 'List available languages',
+				sub_commands: [
+					{
+						trigger: 'set',
+						class: SetGuildLanguageCommand,
+						description: 'Set default language for guild'
+					}
+				]
+			}
+		]
 	}
 ];

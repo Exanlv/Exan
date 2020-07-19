@@ -1,19 +1,16 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { RoleConfig } from './RoleConfig';
 
-export class ServerConfig {
-	public prefix: string = ';;';
-	public dev: boolean = false;
-	
-	public roles: RoleConfig = {roles: [], categories: [], reactions: {}};
-
-	public lang: string = 'en';
-
+export class UserConfig {
 	private path: string;
 
-	constructor(guild_id: string) {
-		this.path = `${process.cwd()}/data/server_config/${guild_id}`;
-		this[existsSync(this.path) ? 'load' : 'save']();
+	public lang: string;
+
+	constructor(user_id: string) {
+		this.path = `${process.cwd()}/data/user_config/${user_id}`;
+		
+		if (existsSync(this.path))
+			this.load();
 	}
 
 	private load(): void {

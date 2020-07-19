@@ -1,5 +1,5 @@
 import { BaseCommand } from "../_BaseCommand";
-import { DEVIDS } from "../../conf/devids";
+import { DEVIDS } from "../../../conf/devids";
 
 export class BaseAdminCommand extends BaseCommand {
 	public async has_permissions(): Promise<boolean> {

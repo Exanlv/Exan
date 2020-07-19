@@ -4,14 +4,17 @@ export class ListRolesCommand extends BaseCommand {
 	private role_names: {[id: string]: string} = {};
 
 	private embed = {
-		title: `Available roles for ${this.guild.name}`,
+		title: this.trans(
+			'commands.list_role.available_roles_for_guild',
+			{ guild_name: this.guild.name }
+		),
 		type: 'rich',
 		fields: []
 	};
 
 	public async handle(): Promise<void> {
 		if (this.server_config.roles.roles.length === 0) {
-			await this.reply('No self-assignable roles');
+			await this.reply(this.trans('commands.list_role.no_self_assignable_roles'));
 			return;
 		}
 
@@ -28,7 +31,10 @@ export class ListRolesCommand extends BaseCommand {
 	}
 
 	private with_categories() {
-		const categories: {[category_name: string]: string[]} = {'No category': []};
+		const no_category = this.trans('commands.list_role.no_category');
+
+		const categories: {[category_name: string]: string[]} = {};
+		categories[no_category] = [];
 
 		for (let i in this.server_config.roles.roles) {
 
@@ -46,12 +52,12 @@ export class ListRolesCommand extends BaseCommand {
 			}
 
 			if (!in_category) {
-				categories['No category'].push(this.role_names[this.server_config.roles.roles[i]]);
+				categories[no_category].push(this.role_names[this.server_config.roles.roles[i]]);
 			}
 		}
 
-		if (categories['No category'].length === 0)
-			delete categories['No category'];
+		if (categories[no_category].length === 0)
+			delete categories[no_category];
 
 		for (let i in categories) {
 			this.embed.fields.push({
@@ -63,7 +69,7 @@ export class ListRolesCommand extends BaseCommand {
 
 	private without_categories() {
 		this.embed.fields.push({
-			name: 'Roles',
+			name: this.trans('commands.list_role.roles'),
 			value: Object.values(this.role_names).join('\n')
 		});
 	}

@@ -1,23 +1,29 @@
 import { Message, Client, TextableChannel, Guild } from "eris";
 import { ServerConfig } from "../classes/ServerConfig";
 import { time } from "console";
+import { Translator } from "../classes/Translator";
+import { UserConfig } from "../classes/UserConfig";
 
 export class BaseCommand {
 	protected message: Message;
 	protected client: Client;
 	protected server_config: ServerConfig;
 	protected args: string[];
+	protected translator: Translator;
+	private user_config_cache: UserConfig;
 	
 	constructor(
 		message: Message,
 		client: Client,
 		server_config: ServerConfig,
-		args: string[]
+		args: string[],
+		translator: Translator
 	) {
 		this.message = message;
 		this.client = client;
 		this.server_config = server_config;
 		this.args = args;
+		this.translator = translator;
 	}
 
 	protected get guild(): Guild {
@@ -25,14 +31,12 @@ export class BaseCommand {
 	}
 
 	public async handle(): Promise<void> {
-		await this.reply('This command hasn\'t been implemented yet!');
+		await this.reply(this.trans('commands.base.command_not_implemented'));
 	}
 
 	public async handle_help(): Promise<void> {
-		await this.reply('No additional help available');
+		await this.reply(this.trans('commands.base.no_additional_help'));
 	}
-
-	 
 
 	public async has_permissions(): Promise<boolean> {
 		return true;
@@ -95,5 +99,18 @@ export class BaseCommand {
 
 			return;
 		}
+	}
+
+	protected trans(key: string, data?: {[key: string]: string}, server_language: boolean = false) {
+		const lang = server_language ? this.server_config.lang : this.user_config.lang ?? this.server_config.lang;
+
+		return this.translator.trans(lang, key, data);
+	}
+
+	protected get user_config(): UserConfig {
+		if (!this.user_config_cache)
+			this.user_config_cache = new UserConfig(this.message.member.id);
+		
+		return this.user_config_cache;
 	}
 }

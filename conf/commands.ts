@@ -18,6 +18,8 @@ import { SetGuildLanguageCommand } from "../src/commands/admin/SetGuildLanguageC
 import { ListLanguageCommand } from "../src/commands/ListLanguageCommand";
 import { SetLanguageCommand } from "../src/commands/SetLanguageCommand";
 import { EvalCommand } from "../src/commands/dev/EvalCommand";
+import { InviteLinkCommand } from "../src/commands/InviteLinkCommand";
+import { ContributeCommand } from "../src/commands/ContributeCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -148,5 +150,15 @@ export const COMMANDS: Command[] = [
 				]
 			}
 		]
+	},
+	{
+		trigger: 'invite',
+		class: InviteLinkCommand,
+		description: 'Invite link'
+	},
+	{
+		trigger: 'contribute',
+		class: ContributeCommand,
+		description: 'Contribute'
 	}
 ];

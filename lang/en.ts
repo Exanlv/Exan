@@ -50,6 +50,12 @@ export const EN: TranslationObject = {
 		list_language: {
 			list: 'Current language for server: :current_server_language\nCurrent language for user: :current_user_language\nCurrent global default: :current_global_language\n\nList of available languages:\n:available_languages\n\nUse `:user_command` and enter the language name or 2 letter code to change your prefered language\nUse `:guild_command` to change the default for the current guild (admin only)',
 			none: 'None'
+		},
+		invite_link: {
+			invite_link: "Want to invite the bot to your own guild? Use the following link!\n\n:link",
+		},
+		contribute: {
+			contribute: "Want to contribute to this bot? You can do so on the github repository! (Typescript / Eris)\n\n:link",
 		}
 	}
 }

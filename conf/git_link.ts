@@ -1,0 +1,1 @@
+export const GIT_LINK = 'https://github.com/Exanlv/Exan';

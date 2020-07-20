@@ -1,0 +1,1 @@
+export const INVITE_LINK = 'https://discord.com/this-link-is-invalid';

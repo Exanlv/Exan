@@ -29,7 +29,7 @@ export class ServerConfig {
 		writeFileSync(this.path, this.to_json());
 	}
 
-	private to_json(): string {
+	public to_json(): string {
 		const blacklist = ['path'];
 
 		const obj = {};

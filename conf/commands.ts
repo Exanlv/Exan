@@ -20,6 +20,7 @@ import { SetLanguageCommand } from "../src/commands/SetLanguageCommand";
 import { EvalCommand } from "../src/commands/dev/EvalCommand";
 import { InviteLinkCommand } from "../src/commands/InviteLinkCommand";
 import { ContributeCommand } from "../src/commands/ContributeCommand";
+import { AddReactionRoleCommand } from '../src/commands/admin/self_assign/reactions/AddReactionRoleCommand'
 
 export const COMMANDS: Command[] = [
 	{
@@ -107,6 +108,16 @@ export const COMMANDS: Command[] = [
 								description: 'Remove role from category',
 							}
 						]
+					}
+				]
+			},
+			{
+				trigger: 'react',
+				class: UnknownCommand,
+				sub_commands: [
+					{
+						trigger: 'add',
+						class: AddReactionRoleCommand
 					}
 				]
 			}

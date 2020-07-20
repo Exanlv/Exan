@@ -17,6 +17,7 @@ import { ListCategoriesCommand } from "../src/commands/admin/self_assign/categor
 import { SetGuildLanguageCommand } from "../src/commands/admin/SetGuildLanguageCommand";
 import { ListLanguageCommand } from "../src/commands/ListLanguageCommand";
 import { SetLanguageCommand } from "../src/commands/SetLanguageCommand";
+import { EvalCommand } from "../src/commands/dev/EvalCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -45,6 +46,11 @@ export const COMMANDS: Command[] = [
 				description: 'Toggle dev mode for the current guild',
 			}
 		]
+	},
+	{
+		trigger: 'eval',
+		class: EvalCommand,
+		description: 'eval'
 	},
 	{
 		trigger: 'self-assign',

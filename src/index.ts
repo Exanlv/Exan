@@ -3,12 +3,14 @@ import { ServerConfig } from './classes/ServerConfig';
 import { handle_command } from './handle_command';
 import { COMMANDS } from '../conf/commands';
 import { UnknownCommand } from './commands/UnknownCommand';
-import { MissingPermissionsCommand } from './commands/MissingPermissionsCommand';
-import { ErrorCommand } from './commands/ErrorCommand';
 import { readFileSync } from 'fs';
 import { Translator } from './classes/Translator';
 import { LANGUAGES } from '../conf/lang';
-import { UserConfig } from './classes/UserConfig';
+import { Reaction } from './classes/Reaction';
+import { handle_message } from './handle_message';
+import { handle_react_add } from './handle_react_add';
+import { handle_raw } from './handle_raw';
+import { handle_react_remove } from './handle_react_remove';
 
 const translator = new Translator;
 
@@ -18,51 +20,30 @@ for (let i in LANGUAGES) {
 
 const bot = Eris(readFileSync('.token').toString().trim());
 
-const server_configs: {[guild_id: string]: ServerConfig} = {};
-
 bot.on('ready', () => {
 	console.log('ready');
 });
 
-bot.on('messageCreate', async (msg: Eris.Message) => {
-	if (!msg.guildID || !msg.member)
-		return;
+bot.on('messageCreate', (message: Eris.Message) => {
+	handle_message(message, bot, translator);
+});
 
-	if (!server_configs[msg.guildID])
-		server_configs[msg.guildID] = new ServerConfig(msg.guildID);
 
-	const prefixes = [
-		server_configs[msg.guildID].prefix,
-		`<@${bot.user.id}> `,
-		`<@!${bot.user.id}> `
-	];
+bot.on('rawWS', (event: {[key: string]: any}) => {
+	handle_raw(event, bot);
+});
 
-	let args;
 
-	const message_content = msg.content.toLowerCase();
+/**
+ * Custom events
+ */
 
-	for (let i in prefixes)
-		if (message_content.startsWith(prefixes[i]))
-			args = message_content.substr(prefixes[i].length).split(' ');
+bot.on('reactionAdd', (event: Reaction) => {
+	handle_react_add(event, bot, translator);
+});
 
-	if (!args)
-		return;
-
-	const command = new ((handle_command(args, COMMANDS) ?? UnknownCommand))(msg, bot, server_configs[msg.guildID], args, translator);
-
-	if (!await command.has_permissions()) {
-		(new MissingPermissionsCommand(msg, bot, server_configs[msg.guildID], args, translator)).handle().catch((e) => {
-			console.log(e);
-
-			(new ErrorCommand(msg, bot, server_configs[msg.guildID], args, translator, e)).handle().catch((e) => { console.log(e); });
-		});
-	} else {
-		command[args[args.length - 1] === '--help' ? 'handle_help' : 'handle']().catch((e) => {
-			console.log(e);
-
-			(new ErrorCommand(msg, bot, server_configs[msg.guildID], args, translator, e)).handle().catch((e) => { console.log(e); });
-		});
-	}
+bot.on('reactionRemove', (event: Reaction) => {
+	handle_react_remove(event, bot, translator);
 });
 
 bot.connect();

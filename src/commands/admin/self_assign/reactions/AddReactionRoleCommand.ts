@@ -40,6 +40,19 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 			return;
 		}
 
+		try {
+			await this.client.addMessageReaction(react.message.channel.id, react.message.id, react.emoji.uid);
+		} catch (e) {
+			await this.reply(this.trans('commands.add_reaction_role.add_reaction_failed'));
+			return;
+		}
+
+		try {
+			await this.client.removeMessageReaction(react.message.channel.id, react.message.id, react.emoji.uid, this.message.member.id);
+		} catch (e) {
+			await this.reply(this.trans('commands.add_reaction_role.failed_removing_setup_react'));
+		}
+
 		if (!this.server_config.roles.reactions[react.message.channel.id])
 			this.server_config.roles.reactions[react.message.channel.id] = {};
 		
@@ -49,7 +62,7 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 		this.server_config.roles.reactions
 			[react.message.channel.id]
 			[react.message.id]
-			[react.emoji.id ?? react.emoji.name] = role.id;
+			[react.emoji.uid] = role.id;
 		
 		this.server_config.save();
 
@@ -58,35 +71,20 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 	
 	public async get_react(): Promise<Reaction> {
 		return new Promise((resolve, reject) => {
-			const event_handler = (message: Message, emoji: Emoji, user_id: string) => {
-				if (user_id === this.message.member.id) {
-					this.client.removeListener('messageReactionAdd', event_handler);
-
-					const reaction: Reaction = {
-						user_id: user_id,
-						emoji: {
-							id: emoji.id,
-							name: emoji.name
-						},
-						message: {
-							id: message.id,
-							channel: {
-								id: message.channel.id
-							}
-						}
-					};
-
+			const event_handler = (reaction: Reaction) => {
+				if (reaction.user_id === this.message.member.id) {
+					this.client.removeListener('reactionAdd', event_handler);
 					resolve(reaction);
 				}
 			};
 			
 			setTimeout(() => {
-				this.client.removeListener('messageReactionAdd', event_handler);
+				this.client.removeListener('reactionAdd', event_handler);
 
 				reject();
 			}, 30000);
 
-			this.client.on('messageReactionAdd', event_handler);
+			this.client.on('reactionAdd', event_handler);
 		});
 	}
 }

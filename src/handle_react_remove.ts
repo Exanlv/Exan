@@ -2,9 +2,11 @@ import { Client } from "eris";
 import { Reaction } from "./classes/Reaction";
 import { Translator } from "./classes/Translator";
 import { ServerConfig } from "./classes/ServerConfig";
+import { MongoDB } from "./classes/MongoDB";
 
-export async function handle_react_remove(react: Reaction, client: Client, translator: Translator) {
-	const server_config = new ServerConfig(react.message.guild.id);
+export async function handle_react_remove(react: Reaction, client: Client, translator: Translator, mongo_db: MongoDB) {
+	const server_config = new ServerConfig(react.message.guild.id, mongo_db);
+	await server_config.load();
 
 	if (!server_config.roles.reactions[react.message.channel.id] ||
 		!server_config.roles.reactions[react.message.channel.id][react.message.id] ||

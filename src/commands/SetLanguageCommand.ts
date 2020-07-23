@@ -14,15 +14,20 @@ export class SetLanguageCommand extends BaseCommand {
 			return;
 		}
 
-		const language = LANGUAGES.find(l => l.name.toLowerCase() === lang.toLowerCase() || l.lang_code === lang.toLowerCase());
+		if (lang === 'none') {
+			delete this.user_config.lang;
+		} else {
+			const language = LANGUAGES.find(l => l.name.toLowerCase() === lang.toLowerCase() || l.lang_code === lang.toLowerCase());
 
-		if (!language) {
-			await this.reply(this.trans('commands.set_language.invalid_language'));
-			return;
+			if (!language) {
+				await this.reply(this.trans('commands.set_language.invalid_language'));
+				return;
+			}
+	
+			this.user_config.lang = language.lang_code;
 		}
-
-		this.user_config.lang = language.lang_code;
-		this.user_config.save();
+		
+		await this.user_config.save();
 
 		await this.reply(this.trans('commands.set_language.language_set'));
 	}

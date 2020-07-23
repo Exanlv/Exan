@@ -46,7 +46,7 @@ export class AddCategoryCommand extends BaseCommand {
 			roles: []
 		});
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.mark_handled();
 	}	

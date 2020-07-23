@@ -22,7 +22,7 @@ export class AddSelfAssignableRole extends BaseAdminCommand {
 		}
 
 		this.server_config.roles.roles.push(role.id);
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.mark_handled();
 	}

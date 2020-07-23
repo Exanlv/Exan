@@ -26,7 +26,7 @@ export class SetPrefixCommand extends BaseAdminCommand {
 
 		this.server_config.prefix = prefix;
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.reply(this.trans('commands.set_prefix.prefix_set'));
 	}

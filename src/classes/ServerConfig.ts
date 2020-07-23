@@ -1,7 +1,8 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { RoleConfig } from './RoleConfig';
+import { MongoDB } from './MongoDB';
 
 export class ServerConfig {
+	private _id: string;
 	public prefix: string = ';;';
 	public dev: boolean = false;
 	
@@ -9,28 +10,35 @@ export class ServerConfig {
 
 	public lang: string = 'en';
 
-	private path: string;
+	private mongo_db: MongoDB;
 
-	constructor(guild_id: string) {
-		this.path = `${process.cwd()}/data/server_config/${guild_id}`;
-		this[existsSync(this.path) ? 'load' : 'save']();
+	constructor(guild_id: string, mongo_db: MongoDB) {
+		this._id = guild_id;
+		this.mongo_db = mongo_db;
 	}
 
-	private load(): void {
-		const config = JSON.parse(
-			readFileSync(this.path).toString()
-		);
+	public async load(): Promise<void> {
+		const data = await this.mongo_db.get('server_configs', this._id);
 
-		for (let i in config)
-			this[i] = config[i];
+		if (!data) {
+			await this.create();
+			return;
+		}
+
+		for (let i in data)
+			this[i] = data[i];
 	}
 
-	public save(): void {
-		writeFileSync(this.path, this.to_json());
+	public async create(): Promise<void> {
+		await this.mongo_db.insert('server_configs', this.to_obj());
 	}
 
-	public to_json(): string {
-		const blacklist = ['path'];
+	public async save(): Promise<void> {
+		await this.mongo_db.update('server_configs', this._id, this.to_obj());
+	}
+
+	private to_obj(): {[key: string]: any} {
+		const blacklist = ['mongo_db'];
 
 		const obj = {};
 
@@ -38,6 +46,10 @@ export class ServerConfig {
 			if (!blacklist.includes(i))
 				obj[i.toString()] = this[i];
 		
-		return JSON.stringify(obj);
+		return obj;
+	}
+
+	public to_json(): string {
+		return JSON.stringify(this.to_obj());
 	}
 }

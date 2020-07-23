@@ -6,12 +6,15 @@ import { Translator } from "./classes/Translator";
 import { ServerConfig } from "./classes/ServerConfig";
 import { ErrorCommand } from "./commands/ErrorCommand";
 import { MissingPermissionsCommand } from "./commands/MissingPermissionsCommand";
+import { MongoDB } from "./classes/MongoDB";
+import { UserConfig } from "./classes/UserConfig";
 
-export async function handle_message(message: Message, client: Client, translator: Translator) {
+export async function handle_message(message: Message, client: Client, translator: Translator, mongo_db: MongoDB) {
 	if (!message.guildID || !message.member)
 		return;
 
-	const server_config = new ServerConfig(message.guildID);
+	const server_config = new ServerConfig(message.guildID, mongo_db);
+	await server_config.load();
 
 	const prefixes = [
 		server_config.prefix,
@@ -30,19 +33,22 @@ export async function handle_message(message: Message, client: Client, translato
 	if (!args)
 		return;
 
-	const command = new ((handle_command(args, COMMANDS) ?? UnknownCommand))(message, client, server_config, args, translator);
+	const user_config = new UserConfig(message.member.id, mongo_db);
+	await user_config.load();
+
+	const command = new ((handle_command(args, COMMANDS) ?? UnknownCommand))(message, client, server_config, user_config, args, translator);
 
 	if (!await command.has_permissions()) {
-		(new MissingPermissionsCommand(message, client, server_config, args, translator)).handle().catch((e) => {
+		(new MissingPermissionsCommand(message, client, server_config, user_config,args, translator)).handle().catch((e) => {
 			console.log(e);
 
-			(new ErrorCommand(message, client, server_config, args, translator, e)).handle().catch((e) => { console.log(e); });
+			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log(e); });
 		});
 	} else {
 		command[args[args.length - 1] === '--help' ? 'handle_help' : 'handle']().catch((e) => {
 			console.log(e);
 
-			(new ErrorCommand(message, client, server_config, args, translator, e)).handle().catch((e) => { console.log(e); });
+			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log(e); });
 		});
 	}
 }

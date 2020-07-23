@@ -57,7 +57,7 @@ export class AddRoleToCategoryCommand extends BaseCommand {
 
 		category.roles.push(role.id);
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.mark_handled();
 	}

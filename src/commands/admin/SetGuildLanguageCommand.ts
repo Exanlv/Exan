@@ -22,7 +22,7 @@ export class SetGuildLanguageCommand extends BaseAdminCommand {
 		}
 
 		this.server_config.lang = language.lang_code;
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.reply(this.trans('commands.set_guild_language.language_set'));
 	}

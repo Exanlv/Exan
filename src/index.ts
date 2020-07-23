@@ -11,8 +11,11 @@ import { handle_react_remove } from './handle_react_remove';
 import { handle_react_remove_all } from './handle_react_remove_all';
 import { handle_channel_delete } from './handle_channel_delete';
 import { MessageDeleteC } from './classes/MessageDeleteC';
+import { MongoDB } from './classes/MongoDB';
+import { handle_message_delete_c } from './handle_message_delete_c';
 
 const translator = new Translator;
+const mongo_db = new MongoDB('localhost', '27017', 'exan');
 
 for (let i in LANGUAGES) {
 	translator.import_object(LANGUAGES[i].lang_code, LANGUAGES[i].lang);
@@ -25,11 +28,11 @@ bot.on('ready', () => {
 });
 
 bot.on('messageCreate', (message: Eris.Message) => {
-	handle_message(message, bot, translator);
+	handle_message(message, bot, translator, mongo_db);
 });
 
 bot.on('channelDelete', (channel: Eris.Channel) => {
-	handle_channel_delete(channel);
+	handle_channel_delete(channel, mongo_db);
 });
 
 
@@ -42,19 +45,22 @@ bot.on('rawWS', (event: {[key: string]: any}) => {
 });
 
 bot.on('reactionAdd', (event: Reaction) => {
-	handle_react_add(event, bot, translator);
+	handle_react_add(event, bot, translator, mongo_db);
 });
 
 bot.on('reactionRemove', (event: Reaction) => {
-	handle_react_remove(event, bot, translator);
+	handle_react_remove(event, bot, translator, mongo_db);
 });
 
 bot.on('reactionRemoveAll', (event: ReactionRemoveAll) => {
-	handle_react_remove_all(event);
+	handle_react_remove_all(event, mongo_db);
 });
 
 bot.on('messageDeleteC', (event: MessageDeleteC) => {
-
+	handle_message_delete_c(event, mongo_db);
 });
 
-bot.connect();
+(async () => {
+	await mongo_db.connect();
+	bot.connect();
+})();

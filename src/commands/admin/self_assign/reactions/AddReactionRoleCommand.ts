@@ -64,7 +64,7 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 			[react.message.id]
 			[react.emoji.uid] = role.id;
 		
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.reply(this.trans('commands.add_reation_role.complete'));
 	}

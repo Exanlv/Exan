@@ -26,7 +26,7 @@ export class RemoveSelfAssignableRole extends BaseAdminCommand {
 			1
 		);
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.mark_handled();
 	}

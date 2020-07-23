@@ -37,7 +37,7 @@ export class RemoveRoleFromCategoryCommand extends BaseCommand {
 
 		category.roles.splice(category.roles.indexOf(role.id), 1);
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.mark_handled();
 	}

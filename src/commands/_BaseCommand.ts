@@ -10,18 +10,20 @@ export class BaseCommand {
 	protected server_config: ServerConfig;
 	protected args: string[];
 	protected translator: Translator;
-	private user_config_cache: UserConfig;
+	protected user_config: UserConfig;
 	
 	constructor(
 		message: Message,
 		client: Client,
 		server_config: ServerConfig,
+		user_config: UserConfig,
 		args: string[],
 		translator: Translator
 	) {
 		this.message = message;
 		this.client = client;
 		this.server_config = server_config;
+		this.user_config = user_config;
 		this.args = args;
 		this.translator = translator;
 	}
@@ -105,12 +107,5 @@ export class BaseCommand {
 		const lang = server_language ? this.server_config.lang : this.user_config.lang ?? this.server_config.lang;
 
 		return this.translator.trans(lang, key, data);
-	}
-
-	protected get user_config(): UserConfig {
-		if (!this.user_config_cache)
-			this.user_config_cache = new UserConfig(this.message.member.id);
-		
-		return this.user_config_cache;
 	}
 }

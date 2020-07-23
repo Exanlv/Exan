@@ -48,6 +48,17 @@ export function handle_raw(event: {[key: string]: any}, client: Client) {
 				user_id: event.d.user_id
 			});
 		break;
+		case 'MESSAGE_REACTION_REMOVE_ALL':
+			if (!event.d.guild_id)
+				return;
 
+			client.emit('reactionRemoveAll', event.d);
+		break;
+		case 'MESSAGE_DELETE':
+			if (!event.d.guild_id)
+				return;
+
+			client.emit('messageDeleteC', event.d);
+		break;
 	}
 }

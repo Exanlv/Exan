@@ -24,6 +24,6 @@ export async function handle_react_remove(react: Reaction, client: Client, trans
 	}
 
 	try {
-		await client.removeGuildMemberRole(guild.id, react.user_id, role.id, translator.trans(server_config.lang, 'reactions.add_role'));
+		await client.removeGuildMemberRole(guild.id, react.user_id, role.id, translator.trans(server_config.lang, 'reactions.remove_role'));
 	} catch(e) { }
 }

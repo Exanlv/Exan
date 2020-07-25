@@ -3,7 +3,6 @@ import { TranslationObject } from "../src/classes/Translator";
 export const EN: TranslationObject = {
 	commands: {
 		base: {
-			command_not_implemented: 'This command hasn\'t been implemented yet!',
 			no_additional_help: 'No additional help available',
 		},
 		help: {
@@ -58,12 +57,12 @@ export const EN: TranslationObject = {
 			current_prefix: 'The prefix used for the current guild is `:prefix`',
 		},
 		set_prefix: {
-			prefix_too_long: 'This prefix is too long, please use a prefix no longer than 32 characters',
+			prefix_too_long: 'This prefix is too long, please use a prefix no longer than :limit characters',
 			no_prefix: 'Put the desired prefix between square brackets, [like this], for more info run \`:command\`',
 			prefix_set: 'Prefix set!',
 			help_example: 'With this command you can change the prefix used on the current guild. Provide the prefix you want to be used between square brackets when using the command.\nExample: \`:command [--]\`, the new bot prefix would be \`--\`',
 			help_show_prefix: 'With this command you can change the prefix used on the current guild. Provide the prefix you want to be used between square brackets when using the command. By removing the --help suffix, you would change the bot prefix to \`:prefix\`',
-			help_length_notice: 'Please note the prefix can not be over 32 characters',
+			help_length_notice: 'Please note the prefix can not be over :limit characters',
 		},
 		get_role: {
 			no_role: 'No role given',

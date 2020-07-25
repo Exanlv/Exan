@@ -1,4 +1,5 @@
 import { BaseAdminCommand } from "./_BaseAdminCommand";
+import { LIMTIS } from "../../../conf/limits";
 
 export class SetPrefixCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
@@ -19,8 +20,8 @@ export class SetPrefixCommand extends BaseAdminCommand {
 
 		const prefix = prefix_search[2];
 
-		if (prefix.length > 32) {
-			await this.reply(this.trans('commands.set_prefix.prefix_too_long'));
+		if (prefix.length > LIMTIS.PREFIX.LENGTH) {
+			await this.reply(this.trans('commands.set_prefix.prefix_too_long', {limit: String(LIMTIS.PREFIX.LENGTH)}));
 			return;
 		}
 
@@ -58,8 +59,8 @@ export class SetPrefixCommand extends BaseAdminCommand {
 			)
 		);
 	
-		if (prefix.length > 32) {
-			await this.reply(this.trans('commands.set_prefix.help_length_notice'));
+		if (prefix.length > LIMTIS.PREFIX.LENGTH) {
+			await this.reply(this.trans('commands.set_prefix.help_length_notice', {limit: String(LIMTIS.PREFIX.LENGTH)}));
 		}
 	}
 }

@@ -3,5 +3,8 @@ export const LIMTIS = {
 		NAME_LENGTH: 200,
 		AMOUNT_TOTAL: 20,
 		AMOUNT_ROLES: 20
+	},
+	PREFIX: {
+		LENGTH: 32,
 	}
 }

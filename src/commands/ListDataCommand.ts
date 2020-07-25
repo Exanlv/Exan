@@ -4,7 +4,7 @@ export class ListDataCommand extends BaseCommand {
 	public async handle(): Promise<void> {
 		const data = this.user_config.to_json();
 
-		this.reply(
+		await this.reply(
 			this.trans(
 				'commands.list_data.list_data',
 				{

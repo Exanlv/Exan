@@ -29,9 +29,11 @@ export class ErrorCommand extends BaseCommand {
 	}
 
 	public async handle(): Promise<void> {
-		if (this.server_config.dev)
-			this.reply(this.trans('commands.error.internal_error_with_error', {error: this.error}));
+		if (this.server_config.dev) {
+			await this.reply(this.trans('commands.error.internal_error_with_error', {error: this.error}));
+			return;
+		}
 		
-		this.reply(this.trans('commands.error.internal_error'));
+		await this.reply(this.trans('commands.error.internal_error'));
 	}
 }

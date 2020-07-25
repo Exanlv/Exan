@@ -13,7 +13,7 @@ export class HelpCommand extends BaseCommand {
 			const command_data = handle_command(this.args.slice(1), COMMANDS);
 
 			if (!command_data || !command_data.sub_commands) {
-				this.reply(
+				await this.reply(
 					this.trans(
 						'commands.help.not_a_category',
 						{category: pre, command: `${this.server_config.prefix}help`}

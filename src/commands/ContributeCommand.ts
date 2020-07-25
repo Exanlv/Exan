@@ -3,7 +3,7 @@ import { GIT_LINK } from "../../conf/git_link";
 
 export class ContributeCommand extends BaseCommand {
 	public async handle(): Promise<void> {
-		this.reply(
+		await this.reply(
 			this.trans(
 				'commands.contribute.contribute',
 				{

@@ -21,6 +21,8 @@ import { EvalCommand } from "../src/commands/dev/EvalCommand";
 import { InviteLinkCommand } from "../src/commands/InviteLinkCommand";
 import { ContributeCommand } from "../src/commands/ContributeCommand";
 import { AddReactionRoleCommand } from '../src/commands/admin/self_assign/reactions/AddReactionRoleCommand'
+import { RemoveReactionRoleCommand } from "../src/commands/admin/self_assign/reactions/RemoveReactionRoleCommand";
+import { ListReactionRolesCommand } from "../src/commands/admin/self_assign/reactions/ListReactionRolesCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -117,7 +119,15 @@ export const COMMANDS: Command[] = [
 				sub_commands: [
 					{
 						trigger: 'add',
-						class: AddReactionRoleCommand
+						class: AddReactionRoleCommand,
+					},
+					{
+						trigger: 'remove',
+						class: RemoveReactionRoleCommand,
+					},
+					{
+						trigger: 'list',
+						class: ListReactionRolesCommand,
 					}
 				]
 			}

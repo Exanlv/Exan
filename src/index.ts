@@ -13,6 +13,9 @@ import { handle_channel_delete } from './handle_channel_delete';
 import { MessageDeleteC } from './classes/MessageDeleteC';
 import { MongoDB } from './classes/MongoDB';
 import { handle_message_delete_c } from './handle_message_delete_c';
+import { handle_guild_role_delete } from './handle_guild_role_delete';
+import { EventEmitter } from 'events';
+import { handle_guild_member_add } from './handle_guild_member_add';
 
 const translator = new Translator;
 const mongo_db = new MongoDB('localhost', '27017', 'exan');
@@ -23,7 +26,7 @@ for (let i in LANGUAGES) {
 
 const bot = Eris(readFileSync('.token').toString().trim());
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
 	console.log('ready');
 });
 
@@ -35,6 +38,13 @@ bot.on('channelDelete', (channel: Eris.Channel) => {
 	handle_channel_delete(channel, mongo_db);
 });
 
+bot.on('guildRoleDelete', (guild: Eris.Guild, role: Eris.Role) => {
+	handle_guild_role_delete(guild, role, mongo_db);
+});
+
+bot.on('guildMemberAdd', (guild: Eris.Guild, member: Eris.Member) => {
+	handle_guild_member_add(guild, member, bot, translator, mongo_db);
+});
 
 /**
  * Custom events
@@ -44,7 +54,7 @@ bot.on('rawWS', (event: {[key: string]: any}) => {
 	handle_raw(event, bot);
 });
 
-bot.on('reactionAdd', (event: Reaction) => {
+bot.on('reactionAdd', async (event: Reaction) => {
 	handle_react_add(event, bot, translator, mongo_db);
 });
 

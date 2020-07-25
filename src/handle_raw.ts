@@ -60,5 +60,17 @@ export function handle_raw(event: {[key: string]: any}, client: Client) {
 
 			client.emit('messageDeleteC', event.d);
 		break;
+		case 'MESSAGE_DELETE_BULK':
+			if (!event.d.guild_id)
+				return;
+			
+			event.d.ids.forEach((id) => {
+				client.emit('messageDeleteC', {
+					message_id: id,
+					channel_id: event.d.channel_id,
+					guild_id: event.d.guild_id,
+				});
+			});
+		break;
 	}
 }

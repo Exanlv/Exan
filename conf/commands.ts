@@ -25,32 +25,35 @@ import { RemoveReactionRoleCommand } from "../src/commands/admin/self_assign/rea
 import { ListReactionRolesCommand } from "../src/commands/admin/self_assign/reactions/ListReactionRolesCommand";
 import { ListDataCommand } from "../src/commands/ListDataCommand";
 import { RemoveDataCommand } from "../src/commands/RemoveDataCommand";
+import { BaseAdminCommand } from "../src/commands/admin/_BaseAdminCommand";
 
 export const COMMANDS: Command[] = [
 	{
 		trigger: 'help',
 		class: HelpCommand,
+		description: 'help'
 	},
 	{
 		trigger: 'prefix',
 		class: PrefixCommand,
-		description: 'Shows the prefix for the current guild',
+		description: 'prefix',
 		sub_commands: [
 			{
 				trigger: 'set',
 				class: SetPrefixCommand,
+				description: 'set_prefix'
 			}
 		]
 	},
 	{
 		trigger: 'dev',
 		class: ListDevModeCommand,
-		description: 'List dev mode for the current guild',
+		description: 'dev',
 		sub_commands: [
 			{
 				trigger: 'toggle',
 				class: ToggleDevModeCommand,
-				description: 'Toggle dev mode for the current guild',
+				description: 'toggle_dev',
 			}
 		]
 	},
@@ -61,55 +64,55 @@ export const COMMANDS: Command[] = [
 	},
 	{
 		trigger: 'self-assign',
-		class: UnknownCommand,
-		description: 'Manage self-assign for guild',
+		class: BaseAdminCommand,
+		description: 'self_assign',
 		sub_commands: [
 			{
 				trigger: 'role',
-				class: UnknownCommand,
-				description: 'Manage self-assignable roles',
+				class: BaseAdminCommand,
+				description: 'self_assign_roles',
 				sub_commands: [
 					{
 						trigger: 'add',
 						class: AddSelfAssignableRole,
-						description: 'Add a self assignable role',
+						description: 'self_assign_roles_add',
 					},
 					{
 						trigger: 'remove',
 						class: RemoveSelfAssignableRole,
-						description: 'Remove a self assignable role',
+						description: 'self_assign_roles_remove',
 					}
 				]
 			},
 			{
 				trigger: 'category',
 				class: ListCategoriesCommand,
-				description: 'Manage categories for self-assignable roles',
+				description: 'self_assign_categories',
 				sub_commands: [
 					{
 						trigger: 'add',
 						class: AddCategoryCommand,
-						description: 'Add category'
+						description: 'self_assign_categories_add'
 					},
 					{		
 						trigger: 'list',
 						class: ListCategoriesCommand,
-						description: 'List categories'
+						description: 'self_assign_categories_list'
 					},
 					{
 						trigger: 'role',
 						class: UnknownCommand,
-						description: 'Manage roles in categories',
+						description: 'self_assign_categories_roles',
 						sub_commands: [
 							{
 								trigger: 'add',
 								class: AddRoleToCategoryCommand,
-								description: 'Add role to category',
+								description: 'self_assign_categories_roles_add',
 							},
 							{
 								trigger: 'remove',
 								class: RemoveRoleFromCategoryCommand,
-								description: 'Remove role from category',
+								description: 'self_assign_categories_roles_remove',
 							}
 						]
 					}
@@ -117,19 +120,23 @@ export const COMMANDS: Command[] = [
 			},
 			{
 				trigger: 'react',
+				description: 'self_assign_react',
 				class: UnknownCommand,
 				sub_commands: [
 					{
 						trigger: 'add',
 						class: AddReactionRoleCommand,
+						description: 'self_assign_react_add'
 					},
 					{
 						trigger: 'remove',
 						class: RemoveReactionRoleCommand,
+						description: 'self_assign_react_remove'
 					},
 					{
 						trigger: 'list',
 						class: ListReactionRolesCommand,
+						description: 'self_assign_react_list'
 					}
 				]
 			}
@@ -138,37 +145,37 @@ export const COMMANDS: Command[] = [
 	{
 		trigger: 'getrole',
 		class: GetRoleCommand,
-		description: 'Get a role'
+		description: 'get_role'
 	},
 	{
 		trigger: 'removerole',
 		class: RemoveRoleCommand,
-		description: 'Remove a role'
+		description: 'remove_role'
 	},
 	{
 		trigger: 'roles',
 		class: ListRolesCommand,
-		description: 'List available roles',
+		description: 'list_roles',
 	},
 	{
 		trigger: 'language',
 		class: ListLanguageCommand,
-		description: 'List available languages',
+		description: 'language',
 		sub_commands: [
 			{
 				trigger: 'set',
 				class: SetLanguageCommand,
-				description: 'Set prefered language',
+				description: 'language_set',
 			},
 			{
 				trigger: 'guild',
 				class: ListLanguageCommand,
-				description: 'List available languages',
+				description: 'language_guild',
 				sub_commands: [
 					{
 						trigger: 'set',
 						class: SetGuildLanguageCommand,
-						description: 'Set default language for guild'
+						description: 'language_guild_set'
 					}
 				]
 			}
@@ -177,20 +184,22 @@ export const COMMANDS: Command[] = [
 	{
 		trigger: 'invite',
 		class: InviteLinkCommand,
-		description: 'Invite link'
+		description: 'invite'
 	},
 	{
 		trigger: 'contribute',
 		class: ContributeCommand,
-		description: 'Contribute'
+		description: 'contribute'
 	},
 	{
 		trigger: 'my-data',
 		class: ListDataCommand,
+		description: 'my_data',
 		sub_commands: [
 			{
 				trigger: 'remove',
 				class: RemoveDataCommand,
+				description: 'my_data_remove'
 			}
 		]
 	}

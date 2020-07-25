@@ -36,7 +36,9 @@ export async function handle_message(message: Message, client: Client, translato
 	const user_config = new UserConfig(message.member.id, mongo_db);
 	await user_config.load();
 
-	const command = new ((handle_command(args, COMMANDS) ?? UnknownCommand))(message, client, server_config, user_config, args, translator);
+	const command_data = handle_command(args, COMMANDS);
+
+	const command = new (command_data ? command_data.class : UnknownCommand)(message, client, server_config, user_config, args, translator);
 
 	if (!await command.has_permissions()) {
 		(new MissingPermissionsCommand(message, client, server_config, user_config,args, translator)).handle().catch((e) => {

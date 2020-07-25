@@ -33,7 +33,7 @@ export class BaseCommand {
 	}
 
 	public async handle(): Promise<void> {
-		await this.reply(this.trans('commands.base.command_not_implemented'));
+		return;
 	}
 
 	public async handle_help(): Promise<void> {
@@ -48,7 +48,7 @@ export class BaseCommand {
 		try {
 			return await this.client.createMessage(this.message.channel.id, message);
 		} catch (e) {
-
+			
 		}
 	}
 

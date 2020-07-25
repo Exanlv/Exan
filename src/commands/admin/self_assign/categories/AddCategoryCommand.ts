@@ -6,7 +6,7 @@ export class AddCategoryCommand extends BaseCommand {
 		if (this.server_config.roles.categories.length === LIMTIS.CATEGORY.AMOUNT_TOTAL) {
 			await this.reply(
 				this.trans(
-					'commands.add_category.enter_name',
+					'commands.add_category.limit_reached',
 					{
 						limit: String(LIMTIS.CATEGORY.AMOUNT_TOTAL)
 					}

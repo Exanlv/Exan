@@ -38,6 +38,7 @@ export const EN: TranslationObject = {
 				contribute: 'Learn how to contribute to the bot',
 				my_data: 'List the data collected about you',
 				my_data_remove: 'Remove all personal data collected about you',
+				self_assign_categories_swap: 'Swap the position of 2 categories',
 			},
 			commands_for: 'Available commands for :username:',
 			description: 'Below are the commands available to you. If you want more info about a specific command, use the command with `--help` added at the end. If you want a brief description of the sub commands of a category, use `:command %category%` with the category you want more info on',

@@ -74,4 +74,18 @@ export class MongoDB {
 			});
 		});
 	}
+
+	public async delete(collection: string, id: string) {
+		if (!this.collections[collection])
+			this.collections[collection] = this.database.collection(collection);
+		
+		return new Promise((resolve, reject) => {
+			this.collections[collection].deleteOne({_id: id}, (err) => {
+				if (err)
+					reject(err);
+				
+				resolve();
+			});
+		});
+	}
 }

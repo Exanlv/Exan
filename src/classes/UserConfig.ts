@@ -44,4 +44,8 @@ export class UserConfig {
 	public to_json(): string {
 		return JSON.stringify(this.to_obj());
 	}
+
+	public async delete(): Promise<void> {
+		this.mongo_db.delete('user_configs', this._id);
+	}
 }

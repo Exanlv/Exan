@@ -56,6 +56,9 @@ export const EN: TranslationObject = {
 		},
 		contribute: {
 			contribute: "Want to contribute to this bot? You can do so on the github repository! (Typescript / Eris)\n\n:link",
+		},
+		list_data: {
+			list_data: "All your personal data: \n```:data```\nTo remove your data use `:command`"
 		}
 	}
 }

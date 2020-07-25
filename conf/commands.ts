@@ -23,6 +23,8 @@ import { ContributeCommand } from "../src/commands/ContributeCommand";
 import { AddReactionRoleCommand } from '../src/commands/admin/self_assign/reactions/AddReactionRoleCommand'
 import { RemoveReactionRoleCommand } from "../src/commands/admin/self_assign/reactions/RemoveReactionRoleCommand";
 import { ListReactionRolesCommand } from "../src/commands/admin/self_assign/reactions/ListReactionRolesCommand";
+import { ListDataCommand } from "../src/commands/ListDataCommand";
+import { RemoveDataCommand } from "../src/commands/RemoveDataCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -181,5 +183,15 @@ export const COMMANDS: Command[] = [
 		trigger: 'contribute',
 		class: ContributeCommand,
 		description: 'Contribute'
+	},
+	{
+		trigger: 'my-data',
+		class: ListDataCommand,
+		sub_commands: [
+			{
+				trigger: 'remove',
+				class: RemoveDataCommand,
+			}
+		]
 	}
 ];

@@ -28,7 +28,7 @@ export const EN: TranslationObject = {
 				self_assign_react_remove: 'Get instructions for removing a reaction role',
 				self_assign_react_list: 'List reaction roles',
 				get_role: 'Get a role',
-				remove_roles: 'Remove a role',
+				remove_role: 'Remove a role',
 				list_roles: 'List available roles',
 				language: 'List available languages',
 				language_set: 'Set your prefered language',

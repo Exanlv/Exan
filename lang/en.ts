@@ -69,12 +69,14 @@ export const EN: TranslationObject = {
 		get_role: {
 			no_role: 'No role given',
 			role_not_self_assignable: 'This role is not self-assignable',
-			enter_role: '> Enter a role'
+			enter_role: '> Enter a role',
+			help: 'Use this command to get a role, simply add the role you want to get after the command. Alternatively, if you dont enter a role, you will be prompted to enter one afterwards',
 		},
 		remove_role: {
 			no_role: 'No role given',
 			role_not_self_assignable: 'This role is not self-assignable',
-			enter_role: '> Enter a role'
+			enter_role: '> Enter a role',
+			admin_log: 'Removed role with command'
 		},
 		list_role: {
 			available_roles_for_guild: 'Available roles for :guild_name',
@@ -94,6 +96,119 @@ export const EN: TranslationObject = {
 		},
 		list_data: {
 			list_data: "All your personal data: \n```:data```\nTo remove your data use `:command`"
-		}
+		},
+		list_dev: {
+			list_dev: 'Dev mode for current guild is set to `:mode`'
+		},
+		set_language: {
+			enter_language: '> Enter prefered language',
+			no_language: 'No language was given',
+			invalid_language: '`:language` is invalid or not supported',
+			language_set: 'Language set!',
+		},
+		set_guild_language: {
+			enter_language: '> Enter prefered language',
+			no_language: 'No language was given',
+			invalid_language: '`:language` is invalid or not supported',
+			language_set: 'Language set!',
+			help: 'Set the default language for the guild. Add the language/language code you want after the command. Alternatively, if you dont enter a language, you will be prompted to enter one afterwards. Please keep in mind that users can pick their own language which will overwrite the guild default for commands used bu them.'
+		},
+		add_category: {
+			limit_reached: 'You reached the limit of :limit categories',
+			no_name: 'No name for the category was entered',
+			category_name_too_long: 'The name you entered is too long, the max length is :limit',
+			category_already_exists: 'Category `:category` already exists',
+			help: 'Using categories you can sort the way the roles list looks. Simply add the name for a category after the command. Alternatively, if you dont enter a name, you will be prompted to enter one afterwards',
+		},
+		add_role_to_category: {
+			enter_category: '> Enter a category',
+			no_category: 'No category was given',
+			category_does_not_exist: 'Category `:category` does not exist',
+			too_many_roles_in_category: 'Too many roles in category! You can only have :limit roles per category',
+			enter_role: '> Enter a role',
+			no_role: 'No role was given',
+			invalid_role: 'Role `:role` does not exist',
+			role_not_self_assignable: 'Role `:role` is not self-assignable',
+			role_already_in_category: 'Role `:role` is already in category `:category`',
+			help: 'With this command you can add a role to a category, adding a role to multiple categories is possible. Simply use the command and enter the requested details'
+		},
+		list_categories: {
+			no_categories: 'There are no categories yet',
+			categories_for: 'Available categories for :guild',
+			categories: 'Categories',
+		},
+		remove_role_from_category: {
+			enter_category: '> Enter a category',
+			no_category: 'No category was given',
+			category_does_not_exist: 'Category `:category` does not exist',
+			enter_role: '> Enter a role',
+			no_role: 'No role was given',
+			invalid_role: 'Role `:role` does not exist',
+			role_not_in_category: 'Role `:role` is not in category `:category`',
+			help: 'With this command you can remove a role to a category. Simply use the command and enter the requested details'
+		},
+		add_reaction_role: {
+			enter_role: '> Enter a role',
+			no_role: 'No role was given',
+			invalid_role: 'Role `:role` does not exist',
+			role_not_self_assignable: 'Role `:role` is not self-assignable',
+			add_react: 'Add the react you want to the desired message',
+			no_react: 'No react was added',
+			add_reaction_failed: 'Failed to add a react, please check if permissions are set up correctly',
+			failed_removing_setup_react: 'Failed to remove your react on the message. You can remove it manually if desired.',
+			complete: 'Reaction role set up successfully!',
+			help: 'With this command you can set up reaction roles. Simply use the command and follow the steps provided'
+		},
+		remove_reaction_role: {
+			info: 'To remove the reaction role, remove the bots reaction that gives the role.',
+		},
+		list_reaction_roles: {
+			no_roles: 'There are no reaction roles',
+			roles_for_guild: 'Reaction roles for :guild'
+		},
+		swap_categories: {
+			enter_category_1: '> Enter first category',
+			no_category_1: 'No first category was entered',
+			invalid_category_1: 'Category `:category` does not exist',
+			enter_category_2: '> Enter second category',
+			no_category_2: 'No second category was entered',
+			invalid_category_2: 'Category `:category` does not exist',
+			enter_different_categories: 'The categories entered are the same',
+			help: 'With this command you can change the order of categories displayed in the roles list by swapping 2 categories. Simply use the command and enter the requested details'
+		},
+		swap_roles: {
+			enter_role_1: '> Enter first role',
+			no_role_1: 'No first role was entered',
+			invalid_role_1: 'Role `:role` does not exist',
+			role_1_not_self_assignable: 'Role `:role` is not self-assignable',
+			enter_role_2: '> Enter second role',
+			no_role_2: 'No first role was entered',
+			invalid_role_2: 'Role `:role` does not exist',
+			role_2_not_self_assignable: 'Role `:role` is not self-assignable',
+			enter_different_roles: 'The roles entered are the same',
+			enter_category_or_none: '> Enter category, \'none\' for no category', // Dont translate \`none\`
+			invalid_category: 'Category `:category` does not exist',
+			category_does_not_have_both_roles: 'This category does not have both specified roles',
+			success: 'Roles swapped!',
+		},
+		add_self_assignable_role: {
+			enter_role: '> Enter a role',
+			no_role: 'No role was given',
+			invalid_role: 'Role `:role` does not exist',
+			role_already_self_assignable: 'Role `:role` is already self-assignable',
+			help: 'With this command you can make roles self-assignable. Simply add the role after the command. Alternatively, if you dont enter a role, you will be prompted to enter one afterwards'
+		},
+		remove_self_assignable_role: {
+			enter_role: '> Enter a role',
+			no_role: 'No role was given',
+			invalid_role: 'Role `:role` does not exist',
+			role_not_self_assignable: 'Role `:role` is not self-assignable',
+			help: 'With this command you can remove self-assignable roles. Simply add the role after the command. Alternatively, if you dont enter a role, you will be prompted to enter one afterwards'
+		},
+	},
+	reactions: {
+		add_role: 'Added role with react',
+		remove_role: 'Removed role with react',
+		restore_role: 'Restored role'
 	}
 }

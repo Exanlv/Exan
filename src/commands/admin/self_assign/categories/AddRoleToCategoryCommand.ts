@@ -13,7 +13,7 @@ export class AddRoleToCategoryCommand extends BaseCommand {
 		const category = this.server_config.roles.categories.find(c => c.name.toLowerCase() === category_name.toLowerCase());
 
 		if (!category) {
-			await this.reply(this.trans('commands.add_role_to_category.category_does_not_exist'));
+			await this.reply(this.trans('commands.add_role_to_category.category_does_not_exist', {category: category_name}));
 			return;
 		}
 
@@ -41,17 +41,17 @@ export class AddRoleToCategoryCommand extends BaseCommand {
 		const role = this.guild.roles.find(r => r.name.toLowerCase() === role_name);
 
 		if (!role) {
-			await this.reply(this.trans('commands.add_role_to_category.invalid_role'));
+			await this.reply(this.trans('commands.add_role_to_category.invalid_role', {role: role_name}));
 			return;
 		}
 
 		if (!this.server_config.roles.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_role_to_category.role_not_self_assignable'));
+			await this.reply(this.trans('commands.add_role_to_category.role_not_self_assignable', {role: role.name}));
 			return;
 		}
 
 		if (category.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_role_to_category.role_already_in_category'));
+			await this.reply(this.trans('commands.add_role_to_category.role_already_in_category', {role: role.name, category: category.name}));
 			return;
 		}
 

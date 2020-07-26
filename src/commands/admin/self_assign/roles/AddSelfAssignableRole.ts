@@ -20,7 +20,7 @@ export class AddSelfAssignableRole extends BaseAdminCommand {
 				this.trans(
 					'commands.add_self_assignable_role.invalid_role',
 					{
-						role_name: role_name
+						role: role_name
 					}
 				)
 			);
@@ -32,7 +32,7 @@ export class AddSelfAssignableRole extends BaseAdminCommand {
 				this.trans(
 					'commands.add_self_assignable_role.role_already_self_assignable',
 					{
-						role_name: role.name
+						role: role.name
 					}
 				)
 			);

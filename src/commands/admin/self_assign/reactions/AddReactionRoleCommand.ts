@@ -19,12 +19,12 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 		const role = this.guild.roles.find(r => r.name.toLowerCase() === role_name);
 
 		if (!role) {
-			await this.reply(this.trans('commands.add_reation_role.invalid_role'));
+			await this.reply(this.trans('commands.add_reation_role.invalid_role', {role: role_name}));
 			return;
 		}
 
 		if (!this.server_config.roles.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_reation_role.role_not_self_assignable'));
+			await this.reply(this.trans('commands.add_reation_role.role_not_self_assignable', {role: role.name}));
 			return;
 		}
 

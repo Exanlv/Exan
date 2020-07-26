@@ -20,7 +20,7 @@ export class SetLanguageCommand extends BaseCommand {
 			const language = LANGUAGES.find(l => l.name.toLowerCase() === lang.toLowerCase() || l.lang_code === lang.toLowerCase());
 
 			if (!language) {
-				await this.reply(this.trans('commands.set_language.invalid_language'));
+				await this.reply(this.trans('commands.set_language.invalid_language', {language: lang}));
 				return;
 			}
 	

@@ -26,7 +26,7 @@ export class AddCategoryCommand extends BaseCommand {
 		if (category_name.length > LIMTIS.CATEGORY.NAME_LENGTH) {
 			await this.reply(
 				this.trans(
-					'commands.add_category.category_already_exists',
+					'commands.add_category.category_name_too_long',
 					{
 						limit: String(LIMTIS.CATEGORY.NAME_LENGTH)
 					}
@@ -37,7 +37,14 @@ export class AddCategoryCommand extends BaseCommand {
 		}
 
 		if (this.server_config.roles.categories.find(c => c.name.toLowerCase() === category_name.toLowerCase())) {
-			await this.reply(this.trans('commands.add_category.category_already_exists'));
+			await this.reply(
+				this.trans(
+					'commands.add_category.category_already_exists',
+					{
+						category: category_name
+					}
+				)
+			);
 			return;
 		}
 

@@ -10,7 +10,7 @@ export class RemoveRoleFromCategoryCommand extends BaseCommand {
 		}
 
 		if (!this.server_config.roles.categories.find(c => c.name.toLowerCase() === category_name.toLowerCase())) {
-			await this.reply(this.trans('commands.remove_role_from_category.category_does_not_exist'));
+			await this.reply(this.trans('commands.remove_role_from_category.category_does_not_exist', {category: category_name}));
 			return;
 		}
 
@@ -24,7 +24,7 @@ export class RemoveRoleFromCategoryCommand extends BaseCommand {
 		const role = this.guild.roles.find(r => r.name.toLowerCase() === role_name);
 
 		if (!role) {
-			await this.reply(this.trans('commands.remove_role_from_category.invalid_role'));
+			await this.reply(this.trans('commands.remove_role_from_category.invalid_role', {role: role_name}));
 			return;
 		}
 

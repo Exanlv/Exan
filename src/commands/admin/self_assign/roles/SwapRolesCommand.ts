@@ -12,12 +12,12 @@ export class SwapRolesCommand extends BaseAdminCommand {
 		const role_1 = this.guild.roles.find(r => r.name.toLowerCase() === role_name_1);
 
 		if (!role_1) {
-			await this.reply(this.trans('commands.swap_roles.invalid_role_1'));
+			await this.reply(this.trans('commands.swap_roles.invalid_role_1', {role: role_name_1}));
 			return;
 		}
 
 		if (!this.server_config.roles.roles.includes(role_1.id)) {
-			await this.reply(this.trans('commands.swap_roles.role_1_not_self_assignable'));
+			await this.reply(this.trans('commands.swap_roles.role_1_not_self_assignable', {role: role_1.name}));
 			return;
 		}
 
@@ -31,12 +31,12 @@ export class SwapRolesCommand extends BaseAdminCommand {
 		const role_2 = this.guild.roles.find(r => r.name.toLowerCase() === role_name_2);
 
 		if (!role_2) {
-			await this.reply(this.trans('commands.swap_roles.invalid_role_2'));
+			await this.reply(this.trans('commands.swap_roles.invalid_role_2', {role: role_name_2}));
 			return;
 		}
 
 		if (!this.server_config.roles.roles.includes(role_2.id)) {
-			await this.reply(this.trans('commands.swap_roles.role_2_not_self_assignable'));
+			await this.reply(this.trans('commands.swap_roles.role_2_not_self_assignable', {role: role_2.name}));
 			return;
 		}
 
@@ -51,12 +51,12 @@ export class SwapRolesCommand extends BaseAdminCommand {
 				const category = this.server_config.roles.categories.find(c => c.name.toLowerCase() === category_name);
 
 				if (!category) {
-					await this.reply(this.trans('commands.swap_roles.invalid_category'));
+					await this.reply(this.trans('commands.swap_roles.invalid_category', {category: category_name}));
 					return;
 				}
 
 				if (!category.roles.includes(role_1.id) || !category.roles.includes(role_2.id)) {
-					await this.reply(this.trans('commands.swap_roles.invalid_category'));
+					await this.reply(this.trans('commands.swap_roles.category_does_not_have_both_roles'));
 					return;
 				}
 

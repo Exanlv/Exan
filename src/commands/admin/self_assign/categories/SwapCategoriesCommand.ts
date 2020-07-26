@@ -15,7 +15,7 @@ export class SwapCategoriesCommand extends BaseAdminCommand {
 
 		if (category_1 === -1) {
 			await this.reply(
-				this.trans('commands.swap_categories.invalid_category_1')
+				this.trans('commands.swap_categories.invalid_category_1', {category: category_1_name})
 			);
 			return;
 		}
@@ -33,7 +33,7 @@ export class SwapCategoriesCommand extends BaseAdminCommand {
 
 		if (category_2 === -1) {
 			await this.reply(
-				this.trans('commands.swap_categories.invalid_category_2')
+				this.trans('commands.swap_categories.invalid_category_2', {category: category_2_name})
 			);
 			return;
 		}

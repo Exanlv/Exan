@@ -17,7 +17,7 @@ export class SetGuildLanguageCommand extends BaseAdminCommand {
 		const language = LANGUAGES.find(l => l.name.toLowerCase() === lang.toLowerCase() || l.lang_code === lang.toLowerCase());
 
 		if (!language) {
-			await this.reply(this.trans('commands.set_guild_language.invalid_language'));
+			await this.reply(this.trans('commands.set_guild_language.invalid_language', {language: lang}));
 			return;
 		}
 

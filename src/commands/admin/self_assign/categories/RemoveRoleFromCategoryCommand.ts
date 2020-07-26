@@ -41,4 +41,8 @@ export class RemoveRoleFromCategoryCommand extends BaseCommand {
 
 		await this.mark_handled();
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.remove_role_from_category.help'));
+	}
 }

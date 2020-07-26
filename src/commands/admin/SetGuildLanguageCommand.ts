@@ -26,4 +26,8 @@ export class SetGuildLanguageCommand extends BaseAdminCommand {
 
 		await this.reply(this.trans('commands.set_guild_language.language_set'));
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.set_guild_language.help'));
+	}
 }

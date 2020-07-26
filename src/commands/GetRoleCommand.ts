@@ -24,4 +24,8 @@ export class GetRoleCommand extends BaseCommand {
 
 		await this.mark_handled();
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.get_role.help'));
+	}
 }

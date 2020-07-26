@@ -55,4 +55,8 @@ export class SwapCategoriesCommand extends BaseAdminCommand {
 
 		this.server_config.save();
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.swap_categories.help'));
+	}
 }

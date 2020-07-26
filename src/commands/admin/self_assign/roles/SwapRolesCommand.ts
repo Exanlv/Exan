@@ -93,4 +93,8 @@ export class SwapRolesCommand extends BaseAdminCommand {
 
 		await this.reply(this.trans('commands.swap_roles.success'));
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.swap_roles.help'));
+	}
 }

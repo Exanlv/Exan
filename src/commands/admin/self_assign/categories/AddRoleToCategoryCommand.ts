@@ -61,4 +61,8 @@ export class AddRoleToCategoryCommand extends BaseCommand {
 
 		await this.mark_handled();
 	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.add_role_to_category.help'));
+	}
 }

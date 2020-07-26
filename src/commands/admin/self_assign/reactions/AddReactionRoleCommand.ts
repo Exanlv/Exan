@@ -1,6 +1,5 @@
 import { BaseAdminCommand } from "../../_BaseAdminCommand";
 import { Reaction } from "../../../../classes/Reaction";
-import { Message, Emoji } from "eris";
 
 export class AddReactionRoleCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
@@ -86,5 +85,9 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 
 			this.client.on('reactionAdd', event_handler);
 		});
+	}
+
+	public async handle_help(): Promise<void> {
+		await this.reply(this.trans('commands.add_reaction_role.help'));
 	}
 }

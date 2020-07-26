@@ -17,6 +17,7 @@ export const EN: TranslationObject = {
 				self_assign_roles: 'Manage self-assignable roles',
 				self_assign_roles_add: 'Add a self assignable role',
 				self_assign_roles_remove: 'Remove a self assignable role',
+				self_assign_roles_swap: 'Swap the position of roles in the roles overview',
 				self_assign_categories: 'Manage categories for self-assignable roles',
 				self_assign_categories_add: 'Add a role category',
 				self_assign_categories_list: 'List role categories',

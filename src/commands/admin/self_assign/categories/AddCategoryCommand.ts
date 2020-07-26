@@ -16,7 +16,7 @@ export class AddCategoryCommand extends BaseCommand {
 			return;
 		}
 
-		const category_name = await this.get_reply(this.trans('commands.add_category.enter_name'));
+		const category_name = this.args.length > 3 ? this.args.slice(3).join(' ') : await this.get_reply(this.trans('commands.add_category.enter_name'));
 
 		if (!category_name) {
 			await this.reply(this.trans('commands.add_category.no_name'));
@@ -49,5 +49,5 @@ export class AddCategoryCommand extends BaseCommand {
 		await this.server_config.save();
 
 		await this.mark_handled();
-	}	
+	}
 }

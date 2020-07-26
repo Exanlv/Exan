@@ -27,6 +27,7 @@ import { ListDataCommand } from "../src/commands/ListDataCommand";
 import { RemoveDataCommand } from "../src/commands/RemoveDataCommand";
 import { BaseAdminCommand } from "../src/commands/admin/_BaseAdminCommand";
 import { SwapCategoriesCommand } from "../src/commands/admin/self_assign/categories/SwapCategoriesCommand";
+import { SwapRolesCommand } from "../src/commands/admin/self_assign/roles/SwapRolesCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -82,6 +83,11 @@ export const COMMANDS: Command[] = [
 						trigger: 'remove',
 						class: RemoveSelfAssignableRole,
 						description: 'self_assign_roles_remove',
+					},
+					{
+						trigger: 'swap',
+						class: SwapRolesCommand,
+						description: 'self_assign_roles_swap'
 					}
 				]
 			},
@@ -119,11 +125,6 @@ export const COMMANDS: Command[] = [
 								trigger: 'remove',
 								class: RemoveRoleFromCategoryCommand,
 								description: 'self_assign_categories_roles_remove',
-							},
-							{
-								trigger: 'swap',
-								class: SwapCategoriesCommand,
-								description: 'self_assign_categories_roles_swap'
 							},
 						]
 					}

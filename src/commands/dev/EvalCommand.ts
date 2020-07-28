@@ -9,7 +9,7 @@ export class EvalCommand extends BaseDevCommand {
 
 			await this.reply(`\`\`\`${res}\`\`\``);
 		} catch (e) {
-			await this.reply(`\`\`\`${e.splice(0, 1990)}\`\`\``);
+			await this.reply(`\`\`\`${String(e).slice(0, 1990)}\`\`\``);
 		}
 	}
 }

@@ -2,7 +2,7 @@ import { BaseAdminCommand } from "../../_BaseAdminCommand";
 
 export class SwapRolesCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
-		const role_name_1 = ((await this.get_reply('commands.swap_roles.enter_role_1')) || '').toLowerCase();
+		const role_name_1 = ((await this.get_reply(this.trans('commands.swap_roles.enter_role_1'))) || '').toLowerCase();
 
 		if (!role_name_1) {
 			await this.reply(this.trans('commands.swap_roles.no_role_1'));
@@ -21,7 +21,7 @@ export class SwapRolesCommand extends BaseAdminCommand {
 			return;
 		}
 
-		const role_name_2 = ((await this.get_reply('commands.swap_roles.enter_role_2')) || '').toLowerCase();
+		const role_name_2 = ((await this.get_reply(this.trans('commands.swap_roles.enter_role_2'))) || '').toLowerCase();
 
 		if (!role_name_2) {
 			await this.reply(this.trans('commands.swap_roles.no_role_2'));

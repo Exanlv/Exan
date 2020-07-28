@@ -28,7 +28,7 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 			return;
 		}
 
-		await this.reply('commands.add_reation_role.add_react');
+		await this.reply(this.trans('commands.add_reation_role.add_react'));
 
 		let react: Reaction;
 
@@ -65,7 +65,7 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 		
 		await this.server_config.save();
 
-		await this.reply(this.trans('commands.add_reation_role.complete'));
+		await this.reply(this.trans('commands.add_reaction_role.complete'));
 	}
 	
 	public async get_react(): Promise<Reaction> {

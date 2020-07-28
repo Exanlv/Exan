@@ -14,17 +14,18 @@ import { MessageDeleteC } from './classes/MessageDeleteC';
 import { MongoDB } from './classes/MongoDB';
 import { handle_message_delete_c } from './handle_message_delete_c';
 import { handle_guild_role_delete } from './handle_guild_role_delete';
-import { EventEmitter } from 'events';
 import { handle_guild_member_add } from './handle_guild_member_add';
 
+require('@exan/envreader').load();
+
 const translator = new Translator;
-const mongo_db = new MongoDB('localhost', '27017', 'exan');
+const mongo_db = new MongoDB(process.env.MONGODB_HOST, process.env.MONGODB_PORT, process.env.MONGODB_DB);
 
 for (let i in LANGUAGES) {
 	translator.import_object(LANGUAGES[i].lang_code, LANGUAGES[i].lang);
 }
 
-const bot = Eris(readFileSync('.token').toString().trim());
+const bot = Eris(process.env.DISCORD_TOKEN);
 
 bot.on('ready', async () => {
 	console.log('ready');

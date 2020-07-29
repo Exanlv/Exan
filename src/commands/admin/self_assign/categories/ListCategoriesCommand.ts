@@ -1,4 +1,5 @@
 import { BaseAdminCommand } from "../../_BaseAdminCommand";
+import { first_letter_uppercase } from "../../../../functions/first_letter_uppercase";
 
 export class ListCategoriesCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
@@ -14,7 +15,7 @@ export class ListCategoriesCommand extends BaseAdminCommand {
 				fields: [
 					{
 						name: this.trans('commands.list_categories.categories'),
-						value: this.server_config.roles.categories.map(c => c.name).join('\n')
+						value: this.server_config.roles.categories.map(c => first_letter_uppercase(c.name)).join('\n')
 					}
 				]
 			}

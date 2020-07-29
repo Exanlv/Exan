@@ -1,4 +1,5 @@
 import { BaseCommand } from "./_BaseCommand";
+import { first_letter_uppercase } from "../functions/first_letter_uppercase";
 
 export class ListRolesCommand extends BaseCommand {
 	private role_names: {[id: string]: string} = {};
@@ -42,10 +43,11 @@ export class ListRolesCommand extends BaseCommand {
 
 			for (let j in this.server_config.roles.categories) {
 				if (this.server_config.roles.categories[j].roles.includes(this.server_config.roles.roles[i])) {
-					if (!categories[this.server_config.roles.categories[j].name])
-						categories[this.server_config.roles.categories[j].name] = [];
+					const category_name = first_letter_uppercase(this.server_config.roles.categories[j].name);
+					if (!categories[category_name])
+						categories[category_name] = [];
 
-					categories[this.server_config.roles.categories[j].name].push(this.role_names[this.server_config.roles.roles[i]]);
+					categories[category_name].push(this.role_names[this.server_config.roles.roles[i]]);
 
 					in_category = true;
 				}

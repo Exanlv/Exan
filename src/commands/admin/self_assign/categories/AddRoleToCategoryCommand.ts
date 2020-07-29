@@ -38,24 +38,36 @@ export class AddRoleToCategoryCommand extends BaseCommand {
 			return;
 		}
 
-		const role = this.guild.roles.find(r => r.name.toLowerCase() === role_name);
+		const role_names = role_name.endsWith(' -a') ? role_name.substr(0, role_name.length - 3).split(',').map(n => n.trim()) : [role_name];
 
-		if (!role) {
-			await this.reply(this.trans('commands.add_role_to_category.invalid_role', {role: role_name}));
-			return;
+		let require_save = false;
+
+		for (let i in role_names) {
+			const role = this.guild.roles.find(r => r.name.toLowerCase() === role_names[i]);
+
+			if (!role) {
+				await this.reply(this.trans('commands.add_role_to_category.invalid_role', {role: role_names[i]}));
+				continue;
+			}
+
+			if (!this.server_config.roles.roles.includes(role.id)) {
+				await this.reply(this.trans('commands.add_role_to_category.role_not_self_assignable', {role: role.name}));
+				continue;
+			}
+
+			if (category.roles.includes(role.id)) {
+				await this.reply(this.trans('commands.add_role_to_category.role_already_in_category', {role: role.name, category: category.name}));
+				continue;
+			}
+
+			category.roles.push(role.id);
+
+			require_save = true;
 		}
 
-		if (!this.server_config.roles.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_role_to_category.role_not_self_assignable', {role: role.name}));
+		
+		if (!require_save)
 			return;
-		}
-
-		if (category.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_role_to_category.role_already_in_category', {role: role.name, category: category.name}));
-			return;
-		}
-
-		category.roles.push(role.id);
 
 		await this.server_config.save();
 

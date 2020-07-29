@@ -125,7 +125,7 @@ export const EN: TranslationObject = {
 			no_category: 'No category was given',
 			category_does_not_exist: 'Category `:category` does not exist',
 			too_many_roles_in_category: 'Too many roles in category! You can only have :limit roles per category',
-			enter_role: '> Enter a role',
+			enter_role: '> Enter a role\n\nTip: add ` -a` to the end to add multiple roles at once seperated by comma',
 			no_role: 'No role was given',
 			invalid_role: 'Role `:role` does not exist',
 			role_not_self_assignable: 'Role `:role` is not self-assignable',

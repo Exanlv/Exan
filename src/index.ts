@@ -34,6 +34,7 @@ const bot = Eris(process.env.DISCORD_TOKEN, {
 });
 
 bot.on('ready', async () => {
+	bot.editStatus('online', {name: `@${bot.user.username} help | Roles`, type: 3});
 	console.log('ready');
 });
 

@@ -97,7 +97,7 @@ export class BaseCommand {
 
 			return response.content;
 		} catch (e) {
-			console.log(e);
+			console.log('Error in getting user response', e);
 
 			return;
 		}

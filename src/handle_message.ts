@@ -44,13 +44,13 @@ export async function handle_message(message: Message, client: Client, translato
 		(new MissingPermissionsCommand(message, client, server_config, user_config,args, translator)).handle().catch((e) => {
 			console.log(e);
 
-			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log(e); });
+			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log('Error in running error command', e); });
 		});
 	} else {
 		command[args[args.length - 1] === '--help' ? 'handle_help' : 'handle']().catch((e) => {
-			console.log(e);
+			console.log('Error in running command', e);
 
-			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log(e); });
+			(new ErrorCommand(message, client, server_config, user_config, args, translator, e)).handle().catch((e) => { console.log('Error in running error command', e); });
 		});
 	}
 }

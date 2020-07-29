@@ -64,7 +64,7 @@ export class HelpCommand extends BaseCommand {
 					})
 				);
 
-				field.value += `\n\n**Sub commands**:\n${extra}`;
+				field.value += `\n\n**${this.trans('commands.help.sub_commands')}**:\n${extra}`;
 			}
 			
 			embed.fields.push(field);

@@ -16,9 +16,9 @@ export const LANGUAGES: Array<{lang_code: string, lang: TranslationObject, name:
 	// 	name: 'Nederlands',
 	// 	lang: NL
 	// },
-	// {
-	// 	lang_code: 'sp',
-	// 	name: 'Español',
-	// 	lang: SP
-	// }
+	{
+		lang_code: 'sp',
+		name: 'Español',
+		lang: SP
+	}
 ];

@@ -41,6 +41,7 @@ export const EN: TranslationObject = {
 				my_data_remove: 'Remove all personal data collected about you',
 				self_assign_categories_swap: 'Swap the position of 2 categories',
 			},
+			sub_commands: 'Sub commands:',
 			commands_for: 'Available commands for :username:',
 			description: 'Below are the commands available to you. If you want more info about a specific command, use the command with `--help` added at the end. If you want a brief description of the sub commands of a category, use `:command %category%` with the category you want more info on',
 			not_a_category: '`:category` is not a category, try using `:command` without extra arguments for a list of categories',

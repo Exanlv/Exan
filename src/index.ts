@@ -1,5 +1,4 @@
 import * as Eris from 'eris';
-import { readFileSync } from 'fs';
 import { Translator } from './classes/Translator';
 import { LANGUAGES } from '../conf/lang';
 import { Reaction } from './classes/Reaction';

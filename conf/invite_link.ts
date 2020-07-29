@@ -1,1 +1,1 @@
-export const INVITE_LINK = 'https://discord.com/this-link-is-invalid';
+export const INVITE_LINK = 'https://discordapp.com/oauth2/authorize?client_id=534840173737803806&scope=bot&permissions=268725312';

@@ -1,0 +1,1 @@
+Bot to handle self-assignable roles with reacts (global emotes supported!), multi-language support and a configurable prefix

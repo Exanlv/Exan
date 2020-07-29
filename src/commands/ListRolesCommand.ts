@@ -37,26 +37,27 @@ export class ListRolesCommand extends BaseCommand {
 		const categories: {[category_name: string]: string[]} = {};
 		categories[no_category] = [];
 
-		for (let i in this.server_config.roles.roles) {
+		const roles_in_category: Array<string> = [];
 
-			let in_category = false;
+		for (let i in this.server_config.roles.categories) {
+			if (!this.server_config.roles.categories[i].roles.length)
+				continue;
+			
+			if (!categories[this.server_config.roles.categories[i].name])
+				categories[this.server_config.roles.categories[i].name] = [];
 
-			for (let j in this.server_config.roles.categories) {
-				if (this.server_config.roles.categories[j].roles.includes(this.server_config.roles.roles[i])) {
-					const category_name = first_letter_uppercase(this.server_config.roles.categories[j].name);
-					if (!categories[category_name])
-						categories[category_name] = [];
-
-					categories[category_name].push(this.role_names[this.server_config.roles.roles[i]]);
-
-					in_category = true;
+			this.server_config.roles.categories[i].roles.forEach((role) => {
+				if (!roles_in_category.includes(role)) {
+					roles_in_category.push(role);
 				}
-			}
 
-			if (!in_category) {
-				categories[no_category].push(this.role_names[this.server_config.roles.roles[i]]);
-			}
+				categories[this.server_config.roles.categories[i].name].push(this.role_names[role]);
+			});
 		}
+
+		for (let i in this.role_names)
+			if (!roles_in_category.includes(i))
+				categories[no_category].push(this.role_names[i]);
 
 		if (categories[no_category].length === 0)
 			delete categories[no_category];

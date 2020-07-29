@@ -70,9 +70,9 @@ export class SwapRolesCommand extends BaseAdminCommand {
 					category.roles[index_2],
 					category.roles[index_1],
 				];
-
-				this.server_config.save();
-
+				
+				await this.server_config.save();
+				
 				await this.reply(this.trans('commands.swap_roles.success'));
 				return;
 			}
@@ -89,7 +89,7 @@ export class SwapRolesCommand extends BaseAdminCommand {
 			this.server_config.roles.roles[index_1],
 		];
 
-		this.server_config.save();
+		await this.server_config.save();
 
 		await this.reply(this.trans('commands.swap_roles.success'));
 	}

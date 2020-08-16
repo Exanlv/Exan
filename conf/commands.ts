@@ -28,6 +28,7 @@ import { RemoveDataCommand } from "../src/commands/RemoveDataCommand";
 import { BaseAdminCommand } from "../src/commands/admin/_BaseAdminCommand";
 import { SwapCategoriesCommand } from "../src/commands/admin/self_assign/categories/SwapCategoriesCommand";
 import { SwapRolesCommand } from "../src/commands/admin/self_assign/roles/SwapRolesCommand";
+import { PrivacyPolicyCommand } from "../src/commands/PrivacyPolicyCommand";
 
 export const COMMANDS: Command[] = [
 	{
@@ -214,5 +215,10 @@ export const COMMANDS: Command[] = [
 				description: 'my_data_remove'
 			}
 		]
-	}
+	},
+	{
+		trigger: 'privacy',
+		class: PrivacyPolicyCommand,
+		description: 'invite'
+	},
 ];

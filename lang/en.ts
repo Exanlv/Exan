@@ -206,6 +206,9 @@ export const EN: TranslationObject = {
 			role_not_self_assignable: 'Role `:role` is not self-assignable',
 			help: 'With this command you can remove self-assignable roles. Simply add the role after the command. Alternatively, if you dont enter a role, you will be prompted to enter one afterwards'
 		},
+		privacy_policy: {
+			policy: '**Data stored (guild based)**\nExan collects no logs. It only stores the bare minimum to make the core functionality - managing / providing self-assignable roles - functional.\n\n**Data stored (user based)**\nExan will not store any user based information unless the user changes their language away from the default set language. The only data Exan will store in this case is the 2 letter code associated with the language chosen. To view the data stored about you or delete it, please check the help menu for the commands.\n\nIf you do not have a language selected, you may notice it returns your Discord UUID. If no other data is returned, this data is not stored in the database. This is simply all data available to the bot at the runtime of the command.\n\n**Data removal**\nFor users there is a simple command available to remove all the data stored about you. If you would like all data of a guild (the self-assignable roles, reacts & default language) to be removed, please contact me (bot creator/owner) on Github. https://github.com/Exanlv/Exan\n\n**Third party involvement**\nThis bot is hosted on a Scaleway VPS. Their privacy policy may apply.'
+		}
 	},
 	reactions: {
 		add_role: 'Added role with react',

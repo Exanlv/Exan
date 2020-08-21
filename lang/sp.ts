@@ -40,6 +40,7 @@ export const SP: TranslationObject = {
 				my_data: 'Lista de la información recolectada sobre ti',
 				my_data_remove: 'Eliminar toda la información recolectada sobre ti',
 				self_assign_categories_swap: 'Cambiar la posición de 2 categorías',
+				privacy: 'Ver la política de privacidad',
 			},
 			sub_commands: 'Sub comandos:',
 			commands_for: 'Comandos disponibles para :username:',

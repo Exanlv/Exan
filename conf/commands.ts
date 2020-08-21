@@ -219,6 +219,6 @@ export const COMMANDS: Command[] = [
 	{
 		trigger: 'privacy',
 		class: PrivacyPolicyCommand,
-		description: 'invite'
+		description: 'privacy'
 	},
 ];

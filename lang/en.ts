@@ -40,6 +40,7 @@ export const EN: TranslationObject = {
 				my_data: 'List the data collected about you',
 				my_data_remove: 'Remove all personal data collected about you',
 				self_assign_categories_swap: 'Swap the position of 2 categories',
+				privacy: 'See the privacy policy',
 			},
 			sub_commands: 'Sub commands:',
 			commands_for: 'Available commands for :username:',

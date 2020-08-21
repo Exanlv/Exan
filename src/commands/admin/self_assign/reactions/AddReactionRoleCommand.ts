@@ -12,30 +12,30 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 		).toLowerCase();
 
 		if (!role_name) {
-			await this.reply(this.trans('commands.add_reation_role.no_role'));
+			await this.reply(this.trans('commands.add_reaction_role.no_role'));
 			return;
 		}
 
 		const role = this.guild.roles.find(r => r.name.toLowerCase() === role_name);
 
 		if (!role) {
-			await this.reply(this.trans('commands.add_reation_role.invalid_role', {role: role_name}));
+			await this.reply(this.trans('commands.add_reaction_role.invalid_role', {role: role_name}));
 			return;
 		}
 
 		if (!this.server_config.roles.roles.includes(role.id)) {
-			await this.reply(this.trans('commands.add_reation_role.role_not_self_assignable', {role: role.name}));
+			await this.reply(this.trans('commands.add_reaction_role.role_not_self_assignable', {role: role.name}));
 			return;
 		}
 
-		await this.reply(this.trans('commands.add_reation_role.add_react'));
+		await this.reply(this.trans('commands.add_reaction_role.add_react'));
 
 		let react: Reaction;
 
 		try {
 			react = await this.get_react();
 		} catch (e) {
-			await this.reply(this.trans('commands.add_reation_role.no_react'));
+			await this.reply(this.trans('commands.add_reaction_role.no_react'));
 			return;
 		}
 

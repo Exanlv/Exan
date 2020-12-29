@@ -116,6 +116,7 @@ export const EN: TranslationObject = {
 			help: 'Set the default language for the guild. Add the language/language code you want after the command. Alternatively, if you dont enter a language, you will be prompted to enter one afterwards. Please keep in mind that users can pick their own language which will overwrite the guild default for commands used bu them.'
 		},
 		add_category: {
+			enter_name: '> Enter category name',
 			limit_reached: 'You reached the limit of :limit categories',
 			no_name: 'No name for the category was entered',
 			category_name_too_long: 'The name you entered is too long, the max length is :limit',

@@ -116,6 +116,7 @@ export const SP: TranslationObject = {
 			help: 'Fija el idioma por defecto para el servidor. Añade el código del idioma/idioma que quieres desoués de este comando. O, si no ingresas el idioma, lo puedes hacer después. Por favor ten en mente que los usuariso pueden elegir su propio idioma que sobrescribirá el valor predeterminado del servidor para los comandos utilizados en ellos.'
 		},
 		add_category: {
+			enter_name: '> Enter category name',
 			limit_reached: 'Haz alcanzado el límite de :limit categories',
 			no_name: 'Ningún nombre ha sido ingresado para la categoría',
 			category_name_too_long: 'El nombre que ingresaste es muy largo, el máximo es :limit',

@@ -82,4 +82,25 @@ After:
 # Categories
 To further organize the `;;roles` menu, you may choose to make use of categories. Categories will be displayed in seperate sections.
 
-To create a category, use `;;self-assign category add`.
+To create a category, use `;;self-assign category add`. This will prompt you to enter a category name.
+
+![Add category, enter name prompt](images/category-add-prompt.png)
+
+After adding a category, you can check if all went well by using `;;self-assign category list` to list all categories.
+
+![Add category, category list](images/category-add-list.png)
+
+## Adding a role to a category
+To make a role show up in a category on the `;;roles` list, you have to add it to the category first. To do this, use `;;self-assign category role add`. This will prompt you to add a category name and a role name afterwards.
+
+![Add role to category, enter category](images/category-role-add-enter-category.png)
+
+![Add role to category, enter role](images/category-role-add-enter-role.png)
+
+When entering the role, you can also add multiple roles at once. If you end your message with `-a`, all roles (seperated by comma) will be added to the category.
+
+Ex: `obsidian, ruby -a` will add both the obsidian role and the ruby role to the category. 
+
+After this, your `;;roles` list will look something like this:
+
+![Add role to category, result role list](images/category-role-add-result.png)

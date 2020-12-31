@@ -104,3 +104,7 @@ Ex: `obsidian, ruby -a` will add both the obsidian role and the ruby role to the
 After this, your `;;roles` list will look something like this:
 
 ![Add role to category, result role list](images/category-role-add-result.png)
+
+# Changing category order
+
+By default all categories will be sorted by the order of which they were added on the `;;roles` list. To change the order of the categories on this list you can use `;;self-assign category swap`. This will prompt you to enter the first category and then the category you would like it to change position with.

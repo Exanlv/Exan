@@ -35,6 +35,8 @@ After entering a role, you will get a confirmation message confirming the role w
 
 ![Add role, listing available roles](images/role-add-see-roles.png)
 
+*You can also append the role you're making self-assignable to the end of the command to speed up the process, `;;self-assign role add obsidian` for example.*
+
 To confirm whether the permissions are set up correctly, attempt to self-assign the role using `;;getrole obsidian`.
 
 ![Add role, confirm permissions](images/role-add-get-role.png)
@@ -79,6 +81,8 @@ After:
 
 ![Swap role, result after](images/role-swap-result-after.png)
 
+*If you use categories, it will prompt you to enter a category after asking for the roles*
+
 # Categories
 To further organize the `;;roles` menu, you may choose to make use of categories. Categories will be displayed in seperate sections.
 
@@ -105,6 +109,39 @@ After this, your `;;roles` list will look something like this:
 
 ![Add role to category, result role list](images/category-role-add-result.png)
 
-# Changing category order
+*A role can be added to multiple categories*
+
+## Changing category order
 
 By default all categories will be sorted by the order of which they were added on the `;;roles` list. To change the order of the categories on this list you can use `;;self-assign category swap`. This will prompt you to enter the first category and then the category you would like it to change position with.
+
+![Swap categories, enter first category](images/swap-categories-enter-first.png)
+
+After which it prompts you for the second role
+
+![Swap categories, enter second category](images/swap-categories-enter-second.png)
+
+Before
+
+![Swap categories, before](images/swap-categories-before.png)
+
+After
+
+![Swap categories, after](images/swap-categories-after.png)
+
+
+## Removing a role from a category
+To remove a role from a category, use the `;;self-assign category role remove` command. This command will prompt you to enter a category and a role afterwards.
+
+![Remove category role, enter category](images/category-role-remove-enter-category.png)
+
+After which you'll be prompted to enter a role
+
+![Remove category role, enter role](images/category-role-remove-enter-role.png)
+
+# Reaction roles
+To make it easier for users to get their roles set up, you may want to set up reaction roles. These make it so a user can simply add a specific react to a message to get a role. (Global emotes supported!)
+
+## Adding a reaction role
+
+## Removing a reaction role

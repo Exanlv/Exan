@@ -3,10 +3,10 @@ import { BaseAdminCommand } from "../../_BaseAdminCommand";
 export class SwapCategoriesCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
 		const category_1_name = ((
-				await this.get_reply(
-					this.trans('commands.swap_categories.enter_category_1')
-				)
-			) || '').toLowerCase();
+			await this.get_reply(
+				this.trans('commands.swap_categories.enter_category_1')
+			)
+		) || '').toLowerCase();
 
 		if (!category_1_name) {
 			await this.reply(
@@ -24,7 +24,11 @@ export class SwapCategoriesCommand extends BaseAdminCommand {
 			return;
 		}
 
-		const category_2_name = ((await this.get_reply('commands.swap_categories.enter_category_2')) || '').toLowerCase();
+		const category_2_name = ((
+			await this.get_reply(
+				this.trans('commands.swap_categories.enter_category_2')
+			)
+		) || '').toLowerCase();
 
 		if (!category_2_name) {
 			await this.reply(

@@ -143,5 +143,29 @@ After which you'll be prompted to enter a role
 To make it easier for users to get their roles set up, you may want to set up reaction roles. These make it so a user can simply add a specific react to a message to get a role. (Global emotes supported!)
 
 ## Adding a reaction role
+To add a reaction role, use the command `;;self-assign react add`. This will prompt you to enter a role to create a react for.
+
+As a start, make sure you have a message prepared to add the react to.
+
+![Add react, prepared message](images/react-add-message-prepared.png)
+
+After this, use the command.
+
+![Add react, enter role](images/react-add-enter-role.png)
+
+You will then be asked to add the react you want to use to the prepared message. In this case you would complete it by adding 🍎 to it.
+
+![Add react, react added](images/react-add-reaction-added.png)
+
+After adding the react, the bot will add the same react to the message. If the bot has permissions for it, it will remove your react as well so there's only the react of the bot left. If the bot does not have permissions to remove your react, it is safe to leave it or remove it.
+
+![Add react, confirmation](images/react-add-confirmation.png)
+
+You can add up to 20 reaction roles per message, which is the amount of reacts you can add to a single message. You can have multiple reacts for the same role and you dont have to use the command in the same channel as the prepared message is in.
 
 ## Removing a reaction role
+To remove a reaction role, go to the "reactions" menu of the message the react is on.
+
+![React remove, reaction menu](images/react-remove-reaction-menu.png)
+
+Then simply delete the react of the bot. This will remove the reaction role.

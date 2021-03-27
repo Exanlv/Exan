@@ -73,6 +73,7 @@ export const SP: TranslationObject = {
 			role_not_self_assignable: 'Este rol no es autoasignable',
 			enter_role: '> Ingresar un rol',
 			help: 'Usa este comando para conseguir un rol, solo añade el rol que quieres después del comando. O, si no ingresas el rol, lo puedes hacer después.',
+            admin_log: 'Añadir un rol con el comando',
 		},
 		remove_role: {
 			no_role: 'Ningún rol otorgado',

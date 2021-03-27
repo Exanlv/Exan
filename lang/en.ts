@@ -73,6 +73,7 @@ export const EN: TranslationObject = {
 			role_not_self_assignable: 'This role is not self-assignable',
 			enter_role: '> Enter a role',
 			help: 'Use this command to get a role, simply add the role you want to get after the command. Alternatively, if you dont enter a role, you will be prompted to enter one afterwards',
+            admin_log: 'Added role with command'
 		},
 		remove_role: {
 			no_role: 'No role given',

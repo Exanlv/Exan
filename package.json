@@ -5,11 +5,11 @@
   "main": "src/index.ts",
   "dependencies": {
     "@exan/envreader": "^1.0.4",
-    "eris": "^0.13.3",
-    "mongodb": "^3.5.9"
+    "eris": "^0.13.4",
+    "mongodb": "^3.6.5"
   },
   "devDependencies": {
-    "@types/node": "^14.0.22"
+    "@types/node": "^14.14.37"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

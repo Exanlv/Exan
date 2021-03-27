@@ -26,7 +26,7 @@ export class MongoDB {
 				
 				this.database = this.client.db(this.database_name);
 
-				resolve();
+				resolve(null);
 			});
 		});
 	}
@@ -42,7 +42,7 @@ export class MongoDB {
 				
 				if (docs.length)
 					resolve(docs[0]);
-				resolve();
+				resolve(null);
 			});
 		});
 	}
@@ -56,7 +56,7 @@ export class MongoDB {
 				if (err)
 					reject(err);
 				
-				resolve();
+				resolve(null);
 			})
 		});
 	}
@@ -70,7 +70,7 @@ export class MongoDB {
 				if (err)
 					reject(err);
 				
-				resolve();
+				resolve(null);
 			});
 		});
 	}
@@ -84,7 +84,7 @@ export class MongoDB {
 				if (err)
 					reject(err);
 				
-				resolve();
+				resolve(null);
 			});
 		});
 	}

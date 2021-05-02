@@ -11,11 +11,11 @@ export const LANGUAGES: Array<{lang_code: string, lang: TranslationObject, name:
 		name: 'English',
 		lang: EN
 	},
-	// {
-	// 	lang_code: 'nl',
-	// 	name: 'Nederlands',
-	// 	lang: NL
-	// },
+	{
+		lang_code: 'nl',
+		name: 'Nederlands',
+		lang: NL
+	},
 	{
 		lang_code: 'sp',
 		name: 'Español',

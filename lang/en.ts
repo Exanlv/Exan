@@ -114,7 +114,7 @@ export const EN: TranslationObject = {
 			no_language: 'No language was given',
 			invalid_language: '`:language` is invalid or not supported',
 			language_set: 'Language set!',
-			help: 'Set the default language for the guild. Add the language/language code you want after the command. Alternatively, if you dont enter a language, you will be prompted to enter one afterwards. Please keep in mind that users can pick their own language which will overwrite the guild default for commands used bu them.'
+			help: 'Set the default language for the guild. Add the language/language code you want after the command. Alternatively, if you dont enter a language, you will be prompted to enter one afterwards. Please keep in mind that users can pick their own language which will overwrite the guild default for commands used by them.'
 		},
 		add_category: {
 			enter_name: '> Enter category name',
@@ -186,7 +186,7 @@ export const EN: TranslationObject = {
 			invalid_role_1: 'Role `:role` does not exist',
 			role_1_not_self_assignable: 'Role `:role` is not self-assignable',
 			enter_role_2: '> Enter second role',
-			no_role_2: 'No first role was entered',
+			no_role_2: 'No second role was entered',
 			invalid_role_2: 'Role `:role` does not exist',
 			role_2_not_self_assignable: 'Role `:role` is not self-assignable',
 			enter_different_roles: 'The roles entered are the same',

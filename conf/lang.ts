@@ -27,7 +27,7 @@ export const LANGUAGES: Array<{lang_code: string, lang: TranslationObject, name:
         lang_code: 'hu',
         name: 'Magyar',
         lang: HU
-    }
+    },
     {
         lang_code: 'cs',
         name: 'Čeština',

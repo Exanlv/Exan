@@ -3,6 +3,7 @@ import { EN } from "../lang/en";
 import { NL } from "../lang/nl";
 import { SP } from "../lang/sp";
 import { HU } from "../lang/hu";
+import { CS } from "../lang/cs";
 
 export const DEFAULT_LANGUAGE = 'en';
 
@@ -26,5 +27,10 @@ export const LANGUAGES: Array<{lang_code: string, lang: TranslationObject, name:
         lang_code: 'hu',
         name: 'Magyar',
         lang: HU
+    }
+    {
+        lang_code: 'cs',
+        name: 'Čeština',
+        lang: CS
     }
 ];

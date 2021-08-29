@@ -24,7 +24,7 @@ for (let i in LANGUAGES) {
 	translator.import_object(LANGUAGES[i].lang_code, LANGUAGES[i].lang);
 }
 
-const bot = Eris(process.env.DISCORD_TOKEN, {
+const bot = Eris(`Bot ${process.env.DISCORD_TOKEN}`, {
 	allowedMentions: {
 		everyone: false,
 		users: false,

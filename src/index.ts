@@ -53,20 +53,19 @@ bot.on('guildMemberAdd', (guild: Eris.Guild, member: Eris.Member) => {
 	handle_guild_member_add(guild, member, bot, translator, mongo_db);
 });
 
+bot.on('messageReactionAdd', (message: Eris.PossiblyUncachedMessage, emoji: Eris.Emoji, user: {id: string}) => {
+    handle_react_add(message, emoji, user, bot, translator, mongo_db);
+});
+
+bot.on('messageReactionRemove', (message: Eris.PossiblyUncachedMessage, emoji: Eris.PartialEmoji, user_id: string) => {
+    handle_react_remove(message, emoji, {id: user_id}, bot, translator, mongo_db);
+});
+
 /**
  * Custom events
  */
-
 bot.on('rawWS', (event: {[key: string]: any}) => {
 	handle_raw(event, bot);
-});
-
-bot.on('reactionAdd', async (event: Reaction) => {
-	handle_react_add(event, bot, translator, mongo_db);
-});
-
-bot.on('reactionRemove', (event: Reaction) => {
-	handle_react_remove(event, bot, translator, mongo_db);
 });
 
 bot.on('reactionRemoveAll', (event: ReactionRemoveAll) => {

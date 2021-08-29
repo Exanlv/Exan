@@ -1,31 +1,36 @@
-import { Client } from "eris";
-import { Reaction } from "./classes/Reaction";
+import { Client, PartialEmoji, PossiblyUncachedMessage } from "eris";
 import { Translator } from "./classes/Translator";
 import { ServerConfig } from "./classes/ServerConfig";
 import { MongoDB } from "./classes/MongoDB";
+import { get_emoji_uid } from './functions/get_emoji_uid';
 
-export async function handle_react_remove(react: Reaction, client: Client, translator: Translator, mongo_db: MongoDB) {
-	const server_config = new ServerConfig(react.message.guild.id, mongo_db);
-	await server_config.load();
+export async function handle_react_remove(message: PossiblyUncachedMessage, emoji: PartialEmoji, user: { id: string }, client: Client, translator: Translator, mongo_db: MongoDB) {
+    if (!message.guildID)
+        return;
 
-	if (!server_config.roles.reactions[react.message.channel.id] ||
-		!server_config.roles.reactions[react.message.channel.id][react.message.id] ||
-		!server_config.roles.reactions[react.message.channel.id][react.message.id][react.emoji.uid])
-		return;
+    const server_config = new ServerConfig(message.guildID, mongo_db);
+    await server_config.load();
 
-	const guild = client.guilds.find(g => g.id === react.message.guild.id);
+    let emojiUid = get_emoji_uid(emoji);
 
-	const role = guild.roles.find(
-		r => r.id === server_config.roles.reactions[react.message.channel.id][react.message.id][react.emoji.uid]
-	);
+    if (!server_config.roles.reactions[message.channel.id] ||
+    	!server_config.roles.reactions[message.channel.id][message.id] ||
+    	!server_config.roles.reactions[message.channel.id][message.id][emojiUid])
+    	return;
 
-	if (react.user_id === client.user.id || !role) {
-		delete server_config.roles.reactions[react.message.channel.id][react.message.id][react.emoji.uid];
-		server_config.save();
-		return;
-	}
+    const guild = client.guilds.find(g => g.id === message.guildID);
 
-	try {
-		await client.removeGuildMemberRole(guild.id, react.user_id, role.id, translator.trans(server_config.lang, 'reactions.remove_role'));
-	} catch(e) { }
+    const role = guild.roles.find(
+    	r => r.id === server_config.roles.reactions[message.channel.id][message.id][emojiUid]
+    );
+
+    if (user.id === client.user.id || !role) {
+    	delete server_config.roles.reactions[message.channel.id][message.id][emojiUid];
+    	server_config.save();
+    	return;
+    }
+
+    try {
+    	await client.removeGuildMemberRole(guild.id, user.id, role.id, translator.trans(server_config.lang, 'reactions.remove_role'));
+    } catch(e) { }
 }

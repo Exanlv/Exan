@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "dependencies": {
     "@exan/envreader": "^1.0.4",
-    "eris": "^0.14.0",
+    "eris": "^0.14.1",
     "mongodb": "^3.6.5"
   },
   "devDependencies": {

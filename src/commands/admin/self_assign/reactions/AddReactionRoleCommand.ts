@@ -1,5 +1,7 @@
 import { BaseAdminCommand } from "../../_BaseAdminCommand";
 import { Reaction } from "../../../../classes/Reaction";
+import { Emoji, PossiblyUncachedMessage } from "eris";
+import { get_emoji_uid } from '../../../../functions/get_emoji_uid';
 
 export class AddReactionRoleCommand extends BaseAdminCommand {
 	public async handle(): Promise<void> {
@@ -70,20 +72,41 @@ export class AddReactionRoleCommand extends BaseAdminCommand {
 	
 	public async get_react(): Promise<Reaction> {
 		return new Promise((resolve, reject) => {
-			const event_handler = (reaction: Reaction) => {
-				if (reaction.user_id === this.message.member.id) {
-					this.client.removeListener('reactionAdd', event_handler);
-					resolve(reaction);
+			const event_handler = (message: PossiblyUncachedMessage, emoji: Emoji, user: {id: string}) => {
+                if (!message.guildID) {
+                    return;
+                }
+
+				if (user.id === this.message.member.id) {
+					this.client.removeListener('messageReactionAdd', event_handler);
+
+					resolve({
+                        message: {
+                            id: message.id,
+                            channel: {
+                                id: message.channel.id,
+                            },
+                            guild: {
+                                id: message.guildID
+                            }
+                        },
+                        emoji: {
+                            id: emoji.id,
+                            name: emoji.name,
+                            uid: get_emoji_uid(emoji)
+                        },
+                        user_id: user.id
+                    });
 				}
 			};
 			
 			setTimeout(() => {
-				this.client.removeListener('reactionAdd', event_handler);
+				this.client.removeListener('messageReactionAdd', event_handler);
 
 				reject();
 			}, 30000);
 
-			this.client.on('reactionAdd', event_handler);
+			this.client.on('messageReactionAdd', event_handler);
 		});
 	}
 

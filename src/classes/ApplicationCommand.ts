@@ -26,6 +26,11 @@ export class ApplicationCommand {
         type: number;
         name: string;
         id: string;
+        options?: {
+            value: string;
+            type: number;
+            name: string;
+            }
     };
     public guild_id: string;
     public channel_id: string;

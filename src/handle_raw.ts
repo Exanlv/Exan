@@ -26,5 +26,8 @@ export function handle_raw(event: {[key: string]: any}, client: Client) {
 				});
 			});
 		break;
+		case 'INTERACTION_CREATE':
+			client.emit('applicationCommand', event.d);
+		break;
 	}
 }

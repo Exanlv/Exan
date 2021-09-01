@@ -1,7 +1,6 @@
 import * as Eris from 'eris';
 import { Translator } from './classes/Translator';
 import { LANGUAGES } from '../conf/lang';
-import { Reaction } from './classes/Reaction';
 import { ReactionRemoveAll } from './classes/ReactionRemoveAll';
 import { handle_message } from './handle_message';
 import { handle_react_add } from './handle_react_add';
@@ -14,6 +13,8 @@ import { MongoDB } from './classes/MongoDB';
 import { handle_message_delete_c } from './handle_message_delete_c';
 import { handle_guild_role_delete } from './handle_guild_role_delete';
 import { handle_guild_member_add } from './handle_guild_member_add';
+import { ApplicationCommand } from './classes/ApplicationCommand';
+import { handle_application_command } from './handle_application_command';
 
 require('@exan/envreader').load();
 
@@ -74,6 +75,10 @@ bot.on('reactionRemoveAll', (event: ReactionRemoveAll) => {
 
 bot.on('messageDeleteC', (event: MessageDeleteC) => {
 	handle_message_delete_c(event, mongo_db);
+});
+
+bot.on('applicationCommand', (event: ApplicationCommand) => {
+	handle_application_command(event, bot, translator, mongo_db);
 });
 
 (async () => {

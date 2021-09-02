@@ -1,34 +1,23 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+import { Exan } from '../index';
 import { ExanController } from './Controllers/ExanController';
 
 export class Api {
-    private static _instance: Api = null;
-
     public server: Server;
 
     public routes: {
-        'GET': Array<Request>,
-        'HEAD': Array<Request>,
-        'POST': Array<Request>,
-        'PUT': Array<Request>,
-        'DELETE': Array<Request>,
-        'CONNECT': Array<Request>,
-        'OPTIONS': Array<Request>,
-        'TRACE': Array<Request>,
-        'PATCH': Array<Request>,
-    } = {
-        'GET': [],
-        'HEAD': [],
-        'POST': [],
-        'PUT': [],
-        'DELETE': [],
-        'CONNECT': [],
-        'OPTIONS': [],
-        'TRACE': [],
-        'PATCH': [],
-    };
+        GET?: Array<Request>,
+        HEAD?: Array<Request>,
+        POST?: Array<Request>,
+        PUT?: Array<Request>,
+        DELETE?: Array<Request>,
+        CONNECT?: Array<Request>,
+        OPTIONS?: Array<Request>,
+        TRACE?: Array<Request>,
+        PATCH?: Array<Request>,
+    } = {};
 
-    private constructor() {
+    public constructor() {
         this.server = createServer(Api.requestListener);
 
         new ExanController(this);
@@ -36,12 +25,8 @@ export class Api {
         this.server.listen(3000);
     }
 
-    public static get Instance(): Api {
-        return this._instance === null ? (this._instance = new this()) : this._instance;
-    }
-
     public static requestListener(req: IncomingMessage, res: ServerResponse) {
-        let api = Api.Instance;
+        let api = Exan.Instance.api;
 
         for (let i in api.routes) {
             for (let j in api.routes[i]) {
@@ -62,6 +47,7 @@ export class Api {
             console.log(e);
 
             res.writeHead(502);
+            res.end();
         });
     }
 
@@ -70,6 +56,10 @@ export class Api {
         uri: string,
         callback: (req: IncomingMessage, res: ServerResponse) => Promise<void>
     ) {
+        if (!this.routes[method]) {
+            this.routes[method] = [];
+        }
+        
         this.routes[method].push({
             uri: uri,
             callback: callback
@@ -88,6 +78,12 @@ export class Api {
                 resolve(body);
             })
         });
+    }
+
+    public static async respondJson(res: ServerResponse, data: any, status: number = 200) {
+        res.setHeader('Content-Type', 'application/json');
+        res.writeHead(status);
+        res.end(JSON.stringify(data));
     }
 }
 

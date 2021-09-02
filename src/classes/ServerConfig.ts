@@ -1,5 +1,6 @@
 import { RoleConfig } from './RoleConfig';
 import { MongoDB } from './MongoDB';
+import { Exan } from '../index';
 
 export class ServerConfig {
 	private _id: string;
@@ -17,8 +18,18 @@ export class ServerConfig {
 		this.mongo_db = mongo_db;
 	}
 
+    public static async hasConfig(guild_id: string): Promise<boolean> {
+		const data = await Exan.Instance.mongo_db.get('server_configs', guild_id);
+
+        return !!data;
+    }
+
+    public static async getConfigData(guild_id: string) {
+        return await Exan.Instance.mongo_db.get('server_configs', guild_id);
+    }
+
 	public async load(): Promise<void> {
-		const data = await this.mongo_db.get('server_configs', this._id);
+		const data = await ServerConfig.getConfigData(this._id);
 
 		if (!data) {
 			await this.create();

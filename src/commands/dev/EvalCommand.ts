@@ -2,10 +2,10 @@ import { BaseDevCommand } from "./_BaseDevCommand";
 
 export class EvalCommand extends BaseDevCommand {
 	public async handle(): Promise<void> {
-		const args = this.args.splice(1, this.args.length - 1);
+        const code = this.message.content.substring(this.server_config.prefix.length + this.args[0].length).trim();
 
 		try {
-			const res = String((eval(args.join(' ')))).slice(0, 1990);
+			const res = String((eval(code))).slice(0, 1990);
 
 			await this.reply(`\`\`\`${res}\`\`\``);
 		} catch (e) {
